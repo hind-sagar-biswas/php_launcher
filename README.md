@@ -14,15 +14,19 @@ It is a pseudo-framework for PHP developers to get a quick start with their proj
 
 ```
 |- project_name/
-    |- core/ <- the files which you'd never have to think about
-    |- shell/ <- the files that work as customizer and else
-    |- facade/ <- the files that you will work with
-    |- vendor/ 
-    |- .gitignore
-    |- .htaccess
-    |- composer.json
-    |- composer.lock
-    |- launch.php
+|   |- core/ <- the files that you'd never have to think about
+|   |   |- .htaccess
+|   |   |- index.php
+|   |- shell/ <- the files that work as customizers and else
+|   |   |- routes/
+|   |   |- errors/
+|   |   |- .env.example
+|   |- facade/ <- the files that you will work with
+|   |- .gitignore
+|   |- .htaccess
+|   |- composer.json
+|   |- composer.lock
+|   |- launch.php
 ```
 
 
