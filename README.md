@@ -18,8 +18,10 @@ It is a pseudo-framework for PHP developers to get a quick start with their proj
 |   |   |- .htaccess
 |   |   |- index.php
 |   |- shell/ <- the files that work as customizers and else
-|   |   |- routes/
 |   |   |- errors/
+|   |   |- gaurds/
+|   |   |- preproccesors/
+|   |   |- routes/
 |   |   |- .env.example
 |   |- facade/ <- the files that you will work with
 |   |- .gitignore
