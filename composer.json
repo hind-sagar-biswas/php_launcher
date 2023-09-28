@@ -1,0 +1,12 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "hindbiswas/quebee": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "Shell\\": "shell/"
+        }
+    }
+}
