@@ -1,4 +1,10 @@
-composer.phar
-/vendor/
+**/dump.sql
+dist/
 .env
-tmp/
+node_modules/
+vendor/
+/$__*/
+%*/
+/temp/
+/logs/
+db_dump_*.sql

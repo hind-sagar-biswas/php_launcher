@@ -1,5 +1,8 @@
 <?php
+// Including the initializer
+require_once './init.php';
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'init.php';
+// Enabling the router
+ROUTER->route(REQUEST);
 
-dd(APP_URL);
+session_write_close();

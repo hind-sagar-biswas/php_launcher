@@ -9,7 +9,7 @@
  */
 function _js(string $fileName, bool $location = false): string|null
 {
-    $fileName = APP_URL . 'assets/js/' . $fileName . '.js';
+    $fileName = APP_URL . '/assets/js/' . $fileName . '.js';
     if ($location) {
         return $fileName;
     }
@@ -26,7 +26,7 @@ function _js(string $fileName, bool $location = false): string|null
  */
 function _css(string $fileName, bool $location = false): string|null
 {
-    $fileName = APP_URL . 'assets/css/' . $fileName . '.css';
+    $fileName = APP_URL . '/assets/css/' . $fileName . '.css';
     if ($location) {
         return $fileName;
     }
@@ -43,7 +43,7 @@ function _css(string $fileName, bool $location = false): string|null
  */
 function _node_js(string $fileName, bool $location = false): string|null
 {
-    $fileName = APP_URL . 'node_modules/' . $fileName . '.js';
+    $fileName = APP_URL . '/node_modules/' . $fileName . '.js';
     if ($location) {
         return $fileName;
     }
@@ -60,7 +60,7 @@ function _node_js(string $fileName, bool $location = false): string|null
  */
 function _node_css(string $fileName, bool $location = false): string|null
 {
-    $fileName = APP_URL . 'node_modules/' . $fileName . '.css';
+    $fileName = APP_URL . '/node_modules/' . $fileName . '.css';
     if ($location) {
         return $fileName;
     }
@@ -77,10 +77,16 @@ function _node_css(string $fileName, bool $location = false): string|null
  */
 function _image(string $fileName, bool $location = true): string|null
 {
-    $fileName = APP_URL . 'assets/images/' . $fileName;
+    $fileName = APP_URL . '/assets/images/' . $fileName;
     if ($location) {
         return $fileName;
     }
     echo '<img src="' . $fileName . '">';
     return null;
+}
+
+function _component(string $name, ?array $data = null) {
+    $fileName = TEMPLATES . 'components/' . $name . '.php';
+    if (file_exists($fileName) && is_file($fileName)) require $fileName;
+    else throw new Exception('Requested component not found!');
 }

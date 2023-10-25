@@ -1,0 +1,753 @@
+{
+    "total": 187,
+    "data": {
+        "afghanistan": {
+            "code": "+93",
+            "size": 9
+        },
+        "aland": {
+            "code": "+358",
+            "size": 8
+        },
+        "algeria": {
+            "code": "+213",
+            "size": 4
+        },
+        "american samoa": {
+            "code": "+1",
+            "size": 10
+        },
+        "anguilla": {
+            "code": "+1",
+            "size": 10
+        },
+        "antigua and barbuda": {
+            "code": "+1",
+            "size": 10
+        },
+        "argentina": {
+            "code": "+54",
+            "size": 10
+        },
+        "armenia": {
+            "code": "+374",
+            "size": 8
+        },
+        "aruba": {
+            "code": "+297",
+            "size": 7
+        },
+        "australia": {
+            "code": "+61",
+            "size": 9
+        },
+        "australian antarctic territory": {
+            "code": "+672",
+            "size": 9
+        },
+        "austria": {
+            "code": "+43",
+            "size": 11
+        },
+        "azerbaijan": {
+            "code": "+994",
+            "size": 9
+        },
+        "bahamas": {
+            "code": "+1",
+            "size": 10
+        },
+        "bahrain": {
+            "code": "+973",
+            "size": 8
+        },
+        "bangladesh": {
+            "code": "+880",
+            "size": 10
+        },
+        "barbados": {
+            "code": "+1",
+            "size": 10
+        },
+        "belarus": {
+            "code": "+375",
+            "size": 9
+        },
+        "belgium": {
+            "code": "+32",
+            "size": 9
+        },
+        "belize": {
+            "code": "+501",
+            "size": 7
+        },
+        "benin": {
+            "code": "+229",
+            "size": 6
+        },
+        "bermuda": {
+            "code": "+1",
+            "size": 10
+        },
+        "bosnia and herzegovina (bosnia-herzegovina)": {
+            "code": "+387",
+            "size": 8
+        },
+        "brazil": {
+            "code": "+55",
+            "size": 11
+        },
+        "british indian ocean territory": {
+            "code": "+246",
+            "size": 7
+        },
+        "british virgin islands": {
+            "code": "+1",
+            "size": 10
+        },
+        "bulgaria": {
+            "code": "+359",
+            "size": 9
+        },
+        "burkina faso": {
+            "code": "+226",
+            "size": 8
+        },
+        "cambodia": {
+            "code": "+855",
+            "size": 9
+        },
+        "cameroon": {
+            "code": "+237",
+            "size": 9
+        },
+        "canada": {
+            "code": "+1",
+            "size": 10
+        },
+        "cayman islands": {
+            "code": "+1",
+            "size": 10
+        },
+        "chad": {
+            "code": "+235",
+            "size": 8
+        },
+        "chagos islands": {
+            "code": "+246",
+            "size": 7
+        },
+        "chile": {
+            "code": "+56",
+            "size": 9
+        },
+        "people's republic of china": {
+            "code": "+86",
+            "size": 11
+        },
+        "colombia": {
+            "code": "+57",
+            "size": 10
+        },
+        "cook islands": {
+            "code": "+682",
+            "size": 5
+        },
+        "costa rica": {
+            "code": "+506",
+            "size": 8
+        },
+        "croatia": {
+            "code": "+385",
+            "size": 9
+        },
+        "cyprus": {
+            "code": "+357",
+            "size": 8
+        },
+        "czech republic": {
+            "code": "+420",
+            "size": 9
+        },
+        "denmark": {
+            "code": "+45",
+            "size": 8
+        },
+        "diego garcia": {
+            "code": "+246",
+            "size": 7
+        },
+        "dominica": {
+            "code": "+1",
+            "size": 10
+        },
+        "dominican republic": {
+            "code": "+1",
+            "size": 10
+        },
+        "east timor": {
+            "code": "+670",
+            "size": 8
+        },
+        "ecuador": {
+            "code": "+593",
+            "size": 9
+        },
+        "egypt": {
+            "code": "+20",
+            "size": 10
+        },
+        "el salvador": {
+            "code": "+503",
+            "size": 8
+        },
+        "england": {
+            "code": "+44",
+            "size": 10
+        },
+        "estonia": {
+            "code": "+372",
+            "size": 7
+        },
+        "eswatini": {
+            "code": "+268",
+            "size": 8
+        },
+        "falkland islands": {
+            "code": "+500",
+            "size": 5
+        },
+        "faroe islands": {
+            "code": "+298",
+            "size": 5
+        },
+        "federated states of micronesia": {
+            "code": "+691",
+            "size": 7
+        },
+        "finland": {
+            "code": "+358",
+            "size": 8
+        },
+        "france": {
+            "code": "+33",
+            "size": 9
+        },
+        "french guiana": {
+            "code": "+594",
+            "size": 12
+        },
+        "french polynesia": {
+            "code": "+689",
+            "size": 6
+        },
+        "gabon": {
+            "code": "+241",
+            "size": 7
+        },
+        "georgia": {
+            "code": "+995",
+            "size": 9
+        },
+        "germany": {
+            "code": "+49",
+            "size": 10
+        },
+        "ghana": {
+            "code": "+233",
+            "size": 9
+        },
+        "greece": {
+            "code": "+30",
+            "size": 10
+        },
+        "greenland": {
+            "code": "+299",
+            "size": 6
+        },
+        "grenada": {
+            "code": "+1",
+            "size": 10
+        },
+        "guadeloupe": {
+            "code": "+590",
+            "size": 12
+        },
+        "guam": {
+            "code": "+1",
+            "size": 10
+        },
+        "guatemala": {
+            "code": "+502",
+            "size": 8
+        },
+        "guernsey": {
+            "code": "+44",
+            "size": 10
+        },
+        "hawaii": {
+            "code": "+1",
+            "size": 10
+        },
+        "honduras": {
+            "code": "+504",
+            "size": 8
+        },
+        "hong kong": {
+            "code": "+852",
+            "size": 8
+        },
+        "hungary": {
+            "code": "+36",
+            "size": 9
+        },
+        "india": {
+            "code": "+91",
+            "size": 10
+        },
+        "indonesia": {
+            "code": "+62",
+            "size": 10
+        },
+        "iran": {
+            "code": "+98",
+            "size": 10
+        },
+        "iraq": {
+            "code": "+964",
+            "size": 10
+        },
+        "ireland": {
+            "code": "+353",
+            "size": 9
+        },
+        "isle of man": {
+            "code": "+44",
+            "size": 10
+        },
+        "israel": {
+            "code": "+972",
+            "size": 9
+        },
+        "italy": {
+            "code": "+39",
+            "size": 13
+        },
+        "jamaica": {
+            "code": "+1",
+            "size": 10
+        },
+        "japan": {
+            "code": "+81",
+            "size": 10
+        },
+        "jersey": {
+            "code": "+44",
+            "size": 10
+        },
+        "jordan": {
+            "code": "+962",
+            "size": 9
+        },
+        "kazakhstan": {
+            "code": "+7",
+            "size": 10
+        },
+        "kenya": {
+            "code": "+254",
+            "size": 10
+        },
+        "kiribati": {
+            "code": "+686",
+            "size": 8
+        },
+        "kosovo": {
+            "code": "+383",
+            "size": 8
+        },
+        "kuwait": {
+            "code": "+965",
+            "size": 8
+        },
+        "kyrgyzstan": {
+            "code": "+996",
+            "size": 9
+        },
+        "latvia": {
+            "code": "+371",
+            "size": 8
+        },
+        "lebanon": {
+            "code": "+961",
+            "size": 8
+        },
+        "liberia": {
+            "code": "+231",
+            "size": 8
+        },
+        "libya": {
+            "code": "+218",
+            "size": 10
+        },
+        "liechtenstein": {
+            "code": "+423",
+            "size": 7
+        },
+        "lithuania": {
+            "code": "+370",
+            "size": 8
+        },
+        "luxembourg": {
+            "code": "+352",
+            "size": 9
+        },
+        "malaysia": {
+            "code": "+60",
+            "size": 7
+        },
+        "maldives": {
+            "code": "+960",
+            "size": 7
+        },
+        "mali": {
+            "code": "+223",
+            "size": 8
+        },
+        "malta": {
+            "code": "+356",
+            "size": 8
+        },
+        "marshall islands": {
+            "code": "+692",
+            "size": 7
+        },
+        "martinique": {
+            "code": "+596",
+            "size": 12
+        },
+        "mauritius": {
+            "code": "+230",
+            "size": 8
+        },
+        "mexico": {
+            "code": "+52",
+            "size": 10
+        },
+        "moldova": {
+            "code": "+373",
+            "size": 8
+        },
+        "monaco": {
+            "code": "+377",
+            "size": 8
+        },
+        "mongolia": {
+            "code": "+976",
+            "size": 8
+        },
+        "montenegro": {
+            "code": "+382",
+            "size": 8
+        },
+        "montserrat": {
+            "code": "+1",
+            "size": 10
+        },
+        "mozambique": {
+            "code": "+258",
+            "size": 12
+        },
+        "myanmar": {
+            "code": "+95",
+            "size": 10
+        },
+        "nepal": {
+            "code": "+977",
+            "size": 10
+        },
+        "netherlands": {
+            "code": "+31",
+            "size": 9
+        },
+        "new caledonia": {
+            "code": "+687",
+            "size": 6
+        },
+        "new zealand": {
+            "code": "+64",
+            "size": 9
+        },
+        "nicaragua": {
+            "code": "+505",
+            "size": 8
+        },
+        "niger": {
+            "code": "+227",
+            "size": 8
+        },
+        "nigeria": {
+            "code": "+234",
+            "size": 8
+        },
+        "niue": {
+            "code": "+683",
+            "size": 4
+        },
+        "norfolk island": {
+            "code": "+672",
+            "size": 6
+        },
+        "north macedonia": {
+            "code": "+389",
+            "size": 8
+        },
+        "northern cyprus": {
+            "code": "+90",
+            "size": 7
+        },
+        "northern ireland": {
+            "code": "+44",
+            "size": 10
+        },
+        "northern mariana islands": {
+            "code": "+1",
+            "size": 10
+        },
+        "norway": {
+            "code": "+47",
+            "size": 8
+        },
+        "oman": {
+            "code": "+968",
+            "size": 8
+        },
+        "pakistan": {
+            "code": "+92",
+            "size": 10
+        },
+        "palau": {
+            "code": "+680",
+            "size": 7
+        },
+        "palestine, state of": {
+            "code": "+970 / +972",
+            "size": 9
+        },
+        "panama": {
+            "code": "+507",
+            "size": 8
+        },
+        "papua new guinea": {
+            "code": "+675",
+            "size": 8
+        },
+        "paraguay": {
+            "code": "+595",
+            "size": 9
+        },
+        "peru": {
+            "code": "+51",
+            "size": 9
+        },
+        "philippines": {
+            "code": "+63",
+            "size": 10
+        },
+        "poland": {
+            "code": "+48",
+            "size": 9
+        },
+        "portugal": {
+            "code": "+351",
+            "size": 9
+        },
+        "puerto rico": {
+            "code": "+1",
+            "size": 10
+        },
+        "qatar": {
+            "code": "+974",
+            "size": 8
+        },
+        "réunion": {
+            "code": "+262",
+            "size": 12
+        },
+        "romania": {
+            "code": "+40",
+            "size": 10
+        },
+        "russia (russian federation)": {
+            "code": "+7",
+            "size": 10
+        },
+        "saint helena and tristan da cunha (not ascenscion)": {
+            "code": "+290",
+            "size": 4
+        },
+        "saint kitts and nevis": {
+            "code": "+1",
+            "size": 10
+        },
+        "saint lucia": {
+            "code": "+1",
+            "size": 10
+        },
+        "saint vincent and the grenadines": {
+            "code": "+1",
+            "size": 10
+        },
+        "samoa": {
+            "code": "+685",
+            "size": 5
+        },
+        "saudi arabia": {
+            "code": "+966",
+            "size": 9
+        },
+        "scotland": {
+            "code": "+44",
+            "size": 10
+        },
+        "serbia": {
+            "code": "+381",
+            "size": 8
+        },
+        "singapore": {
+            "code": "+65",
+            "size": 8
+        },
+        "sint maarten": {
+            "code": "+1",
+            "size": 10
+        },
+        "slovakia (slovak republic)": {
+            "code": "+421",
+            "size": 9
+        },
+        "solomon islands": {
+            "code": "+677",
+            "size": 7
+        },
+        "somalia": {
+            "code": "+252",
+            "size": 7
+        },
+        "south africa": {
+            "code": "+27",
+            "size": 9
+        },
+        "south korea": {
+            "code": "+82",
+            "size": 9
+        },
+        "spain": {
+            "code": "+34",
+            "size": 9
+        },
+        "sri lanka": {
+            "code": "+94",
+            "size": 7
+        },
+        "sweden": {
+            "code": "+46",
+            "size": 7
+        },
+        "switzerland": {
+            "code": "+41",
+            "size": 9
+        },
+        "syria": {
+            "code": "+963",
+            "size": 9
+        },
+        "taiwan": {
+            "code": "+886",
+            "size": 9
+        },
+        "tanzania": {
+            "code": "+255",
+            "size": 6
+        },
+        "thailand": {
+            "code": "+66",
+            "size": 9
+        },
+        "togo": {
+            "code": "+228",
+            "size": 8
+        },
+        "trinidad and tobago": {
+            "code": "+1",
+            "size": 10
+        },
+        "tunisia": {
+            "code": "+216",
+            "size": 8
+        },
+        "turkey": {
+            "code": "+90",
+            "size": 10
+        },
+        "turks and caicos islands": {
+            "code": "+1",
+            "size": 10
+        },
+        "ukraine": {
+            "code": "+380",
+            "size": 9
+        },
+        "united arab emirates": {
+            "code": "+971",
+            "size": 9
+        },
+        "united kingdom": {
+            "code": "+44",
+            "size": 10
+        },
+        "united states (usa)": {
+            "code": "+1",
+            "size": 10
+        },
+        "united states virgin islands": {
+            "code": "+1",
+            "size": 10
+        },
+        "uruguay": {
+            "code": "+598",
+            "size": 8
+        },
+        "vatican city": {
+            "code": "+39",
+            "size": 10
+        },
+        "venezuela": {
+            "code": "+58",
+            "size": 7
+        },
+        "vietnam": {
+            "code": "+84",
+            "size": 9
+        },
+        "u.s. virgin islands": {
+            "code": "+1",
+            "size": 10
+        },
+        "wales": {
+            "code": "+44",
+            "size": 10
+        },
+        "yemen": {
+            "code": "+967",
+            "size": 9
+        },
+        "zambia": {
+            "code": "+260",
+            "size": 9
+        },
+        "zimbabwe": {
+            "code": "+263",
+            "size": 9
+        }
+    }
+}

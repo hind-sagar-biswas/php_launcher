@@ -1,3 +1,11 @@
 RewriteEngine On
 
+# Route requests to assets folder
+RewriteCond %{DOCUMENT_ROOT}/assets/$1 -f
+RewriteRule ^(.+) assets/$1 [L]
+
+# Route requests to node_modules folder
+RewriteCond %{DOCUMENT_ROOT}/node_modules/$1 -f
+RewriteRule ^(.+) node_modules/$1 [L]
+
 RewriteRule ^ index.php [L,QSA]
