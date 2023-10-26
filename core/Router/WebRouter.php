@@ -102,9 +102,6 @@ class WebRouter
         }
         ob_end_clean();
 
-        require_once TEMPLATES . 'header.php';
-        require_once TEMPLATES . 'navbar.php';
         echo $body_content;
-        require_once TEMPLATES . 'footer.php';
     }
 }
