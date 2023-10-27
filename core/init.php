@@ -14,9 +14,10 @@ require_once ROOTPATH . 'vendor/autoload.php';
 
 // Class Uses
 use Core\Base\Request;
-use Core\Base\RequestType;
 use Core\Router\Router;
 use Core\Security\Csrf;
+use Core\Base\RequestType;
+use Core\Router\RouteSystem;
 use Hindbiswas\Phpdotenv\DotEnv;
 
 // Load Env Variables
@@ -51,16 +52,17 @@ define('DB_NAME', $_ENV['DB_DATABASE']);
 define('DB_USER', $_ENV['DB_USERNAME']);
 define('DB_PASS', $_ENV['DB_PASSWORD']);
 // Request
+define('APP_ROUTE_SYS', RouteSystem::tryFrom($_ENV['APP_ROUTE_SYSTEM']) ?? RouteSystem::RAW);
 define('REQUEST', (isset($_SERVER['REQUEST_URI'])) ? new Request() : null);
 define('ALERT', (isset($_SESSION['message'])) ? $_SESSION['message'] : null);
 
-if (REQUEST) $Router = new Router();
+if (REQUEST) $Router = new Router(APP_ROUTE_SYS);
 
 // Requires
 require_once ROOTPATH . 'core/Func/functions.php';
 
 // Shells
-if (REQUEST) require_once ROOTPATH . 'shell/routes/' . ((REQUEST->type === RequestType::WEB) ? 'web.php' : 'api.php');
+if (REQUEST && APP_ROUTE_SYS !== RouteSystem::RAW) require_once ROOTPATH . 'shell/routes/' . ((REQUEST->type === RequestType::WEB) ? 'web.php' : 'api.php');
 require_once ROOTPATH . 'shell/extend.php';
 
 // Router

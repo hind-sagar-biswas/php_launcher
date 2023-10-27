@@ -31,6 +31,7 @@ $vars = [
     'APP_ROOT' => normalizePath(StdIO::get('App root', '/php_launcher')),
     'APP_URL' => StdIO::get('App URL', 'http://localhost'),
     'APP_DEBUG' => StdIO::get('Debug mode', 'true', ['true', 'false']),
+    'APP_ROUTE_SYSTEM' => (StdIO::get('Router system', 'raw', ['raw', 'ctr']) === 'ctr') ? 'controlled' : 'raw',
     'APP_KEY' => Random::hex(),
     'DATABASE_HOST' => StdIO::get('Database host', 'localhost'),
     'DATABASE_DATABASE' => StdIO::get('Database database', 'launcher_db'),

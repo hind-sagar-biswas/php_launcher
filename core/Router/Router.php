@@ -4,19 +4,22 @@ namespace Core\Router;
 
 use Core\Base\Request;
 use Core\Base\RequestType;
-use Core\Router\ApiRoute;
-use Core\Router\WebRoute;
-use Core\Router\ApiRouter;
-use Core\Router\WebRouter;
 
-class Router {
-    protected WebRouter|ApiRouter $router;
+class Router
+{
+    protected FileRouter|WebRouter|ApiRouter $router;
 
-    public function __construct() {
-        $this->router = (REQUEST->type === RequestType::WEB) ? new WebRouter() : new ApiRouter();
+    public function __construct(protected readonly RouteSystem $system)
+    {
+        if ($this->system === RouteSystem::RAW) {
+            $this->router = new FileRouter();
+        } else {
+            $this->router = (REQUEST->type === RequestType::WEB) ? new WebRouter() : new ApiRouter();
+        }
     }
-    
-    public function route(Request $request) {
+
+    public function route(Request $request)
+    {
         $this->router->route($request);
     }
 

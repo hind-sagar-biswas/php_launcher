@@ -1,3 +1,6 @@
+<?php
+
+use Core\Router\RouteSystem; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,17 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-
-
-
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-    <!-- and it's easy to individually load additional languages -->
-    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script> -->
-
-
     <style>
         html {
             scroll-behavior: smooth;
@@ -95,7 +89,9 @@
 
     <div class="doc">
         <?php include_once ROOTPATH . 'core/Cmd/stdio.php' ?>
-        <h4 style="max-width: 800px; width: 100%; margin: auto;"><pre><?php include ROOTPATH . 'core/Cmd/info.php' ?></pre></h4>
+        <h4 style="max-width: 800px; width: 100%; margin: auto;">
+            <pre><?php include ROOTPATH . 'core/Cmd/info.php' ?></pre>
+        </h4>
 
         <h1 style="text-align: center;">Welcome to Homepage</h1>
 
@@ -105,7 +101,11 @@
             <h3># Table of Contents</h3>
             <ol>
                 <a href="#doc_declare_routes">
-                    <li>Declare Custom Routes</li>
+                    <?php if (APP_ROUTE_SYS === RouteSystem::RAW) : ?>
+                        <li>Declare Custom Routes</li>
+                    <?php else : ?>
+                        <li>Move to Raw Routes</li>
+                    <?php endif; ?>
                 </a>
                 <a href="#doc_debugging">
                     <li>Debugging</li>
@@ -116,25 +116,39 @@
             </ol>
         </div>
         <hr>
-        <div>
-            <h2 id="doc_declare_routes">Declare custom routes:</h2>
 
-            <h3>Step 1: Enable custom router</h3>
-            <p>To enable controled/custom routes insted of filesystem, go to <code class="code">/shell/.nev</code> and change the value of <code class="code">ROUTER_TYPE</code> to the following</p>
-            <pre><code class="lamguage-env">ROUTER_TYPE=custom</code></pre>
 
-            <h3>Step 2: Create routes</h3>
-            <p>To declare routes go to <code class="code">/shell/routes/</code>. In there, there are 2 files i.e <code class="code">web.php</code> [that controlls norma routes where response is html] and <code class="code">api.php</code> [which controlls api routes for urls starting with <code class="code">/api/</code> and response type is JSON]. The file content looks like this:</p>
+        <?php if (APP_ROUTE_SYS === RouteSystem::RAW) : ?>
+            <div>
+                <h2 id="doc_declare_routes">Declare custom routes:</h2>
 
-            <pre><code class="lamguage-php">&lt;?php
+                <h3>Step 1: Enable custom router</h3>
+                <p>To enable controled/custom routes insted of filesystem, go to <code class="code">/shell/.env</code> and change the value of <code class="code">APP_ROUTE_SYSTEM</code> to the following</p>
+                <pre><code class="lamguage-env">APP_ROUTE_SYSTEM=controlled</code></pre>
+
+                <h3>Step 2: Create routes</h3>
+                <p>To declare routes go to <code class="code">/shell/routes/</code>. In there, there are 2 files i.e <code class="code">web.php</code> [that controlls norma routes where response is html] and <code class="code">api.php</code> [which controlls api routes for urls starting with <code class="code">/api/</code> and response type is JSON]. The file content looks like this:</p>
+
+                <pre><code class="lamguage-php">&lt;?php
 
 use Core\Router\Router;
 
 $Router->add_routes(
     Router::get('/')->name('home')->call('index'),
 );</code></pre>
-            <p>There, use <code class="code">Router::get('/route/path/')->name('route.name')->call('file/name')</code> format to declare new routes</p>
-        </div>
+                <p>There, use <code class="code">Router::get('/route/path/')->name('route.name')->call('file/name')</code> format to declare new routes</p>
+            </div>
+        <?php else : ?>
+            <div>
+                <h2 id="doc_declare_routes">Move to raw routes:</h2>
+
+                <h3>Step 1: Enable raw router</h3>
+                <p>To enable raw/filesystem based routes insted of declarative and controlled ones, go to <code class="code">/shell/.env</code> and change the value of <code class="code">APP_ROUTE_SYSTEM</code> to the following</p>
+                <pre><code class="lamguage-env">APP_ROUTE_SYSTEM=raw</code></pre>
+
+                <p>Now the routes will follow the name of the file, so <code class="code">url/path/to/filename/</code> will output the contents of <code class="code">./facade/path/to/filename.php</code></p>
+            </div>
+        <?php endif; ?>
 
         <div>
             <h2 id="doc_debugging">Debugging</h2>
