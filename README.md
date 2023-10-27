@@ -9,6 +9,26 @@
 
 It is a pseudo-framework for PHP developers to get a quick start with their projects with the highest control and lowest learning curve!
 
+## Installing and getting started
+
+### Step 1: Downloading/Cloning the code
+
+Download the code of this repository or clone it *(if cloned, be sure to remove `.git` folder)*. To clone run:
+
+```
+https://github.com/hind-sagar-biswas/php_launcher.git
+```
+
+### Step 2: Run the launcher
+
+Rename the folder to your project and then enter it. Then run the follwing code. Be sure to have internet connection as it will install composer packages too. Then run the follwing command and it'll guide you through an easy installation process where you'll need to provide informations on the project.
+
+```
+php launch
+```
+
+Now you are all set up! You'll find more docs when you visit the homepage of the project without making any changes.
+
 ## File Structure
 
 ```
