@@ -94,10 +94,12 @@
 <body>
 
     <div class="doc">
-        <h1>Welcome to Homepage</h1>
+        <?php include_once ROOTPATH . 'core/Cmd/stdio.php' ?>
+        <h4 style="max-width: 800px; width: 100%; margin: auto;"><pre><?php include ROOTPATH . 'core/Cmd/info.php' ?></pre></h4>
+
+        <h1 style="text-align: center;">Welcome to Homepage</h1>
 
         <?php d(REQUEST) ?>
-
         <hr>
         <div class="table-of-contents">
             <h3># Table of Contents</h3>
