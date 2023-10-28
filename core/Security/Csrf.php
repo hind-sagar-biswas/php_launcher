@@ -7,7 +7,7 @@ use Core\Security\Response;
 
 class Csrf
 {
-    public static function validateToken(string|null $keyName = '_csrf_token_key', string|null $hashName = '_csrf_token_hash', string $csrf_enabled = CSRF_ENABLED)
+    public static function validateToken(string|null $keyName = '_csrf_token_key', string|null $hashName = '_csrf_token_hash', bool $csrf_enabled = CSRF_ENABLED)
     {
         $hash = $GLOBALS[$hashName];
         $key = $GLOBALS[$keyName];
@@ -15,7 +15,7 @@ class Csrf
         unset($GLOBALS[$hashName]);
         unset($GLOBALS[$keyName]);
 
-        if ($csrf_enabled !== 'true') return false;
+        if (!$csrf_enabled) return false;
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') return false;
         if (!isset($_POST['_csrf_token'])) Response::terminateNoAuth();
         if (!$hash || !$key) Response::terminateUnuth();
@@ -26,9 +26,9 @@ class Csrf
         if (self::hashToken($token, $key) !== $hash) Response::terminateUnuth();
     }
 
-    public static function generateToken(string $csrf_enabled = CSRF_ENABLED)
+    public static function generateToken(bool $csrf_enabled = CSRF_ENABLED)
     {
-        if ($csrf_enabled !== 'true') return null;
+        if (!$csrf_enabled) return null;
 
         $key = Random::key();
         $token = Random::hex();

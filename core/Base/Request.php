@@ -50,6 +50,6 @@ class Request
         unset($req_query['page']);
         $this->query = array_map(fn ($val): string => htmlspecialchars($val, ENT_QUOTES), $req_query);
         
-        if (CSRF_ENABLED === 'true' && $this->type === RequestType::WEB && $this->method == 'POST') Csrf::validateToken();
+        if (CSRF_ENABLED && $this->type === RequestType::WEB && $this->method == 'POST') Csrf::validateToken();
     }
 }

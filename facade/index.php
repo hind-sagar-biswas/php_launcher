@@ -13,6 +13,7 @@ use Core\Router\RouteSystem; ?>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script defer type="text/javascript" src="https://unpkg.com/highlightjs-blade/dist/blade.min.js"></script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -115,6 +116,9 @@ use Core\Router\RouteSystem; ?>
                 <a href="#doc_include_static">
                     <li>Including Static Files</li>
                 </a>
+                <a href="#doc_csrf_protection">
+                    <li>CSRF Protection</li>
+                </a>
             </ol>
         </div>
         <hr>
@@ -200,6 +204,25 @@ $Router->add_routes(
 
 // Output:
 // &lt;script defer src="http://url/node_modules/path/to/filename.extension"&gt;&lt;/script&gt;</code></pre>
+        </div>
+
+        <div>
+            <h2 id="doc_csrf_protection">CSRF Protection</h2>
+
+            <?php if (!CSRF_ENABLED) : ?>
+                <h3><span style="color:red">!!</span> Enable Csrf</h3>
+                <p>First enable csrf from <code class="code">.env</code> file and to do that, go to <code class="code">/shell/.env</code> and change the value of <code class="code">CSRF_ENABLED</code> to the following</p>
+
+                <pre><code class="lamguage-env">CSRF_ENABLED=true</code></pre>
+            <?php endif; ?>
+
+            <h3>Include CSRF token to Forms</h3>
+            <p>CSRF protection is only needed in <code class="code">POST</code> requests. So you'd need to include the CSRF token as a hidden inout element in every <code class="code">form:POST</code> forms. To do that just call <code class="code">_csrf()</code> function.</p>
+
+            <pre><code class="language-blade">&lt;form action="&lt;?= ROUTER->postRoute('route.name') ?&gt;" method="post"&gt;
+    &lt;?php _csrf() ?&gt;
+    &lt;!-- Other input feilds and submit button here --&gt;
+&lt;/form&gt;</code></pre>
         </div>
     </div>
 
