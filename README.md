@@ -13,7 +13,7 @@ It is a pseudo-framework for PHP developers to get a quick start with their proj
 
 ### Step 1: Downloading/Cloning the code
 
-Download the code of this repository or clone it *(if cloned, be sure to remove `.git` folder)*. To clone run:
+Download the code of this repository or clone it *(if cloned, be sure to remove `.git` and `.github` folder)*. To clone run:
 
 ```
 https://github.com/hind-sagar-biswas/php_launcher.git
