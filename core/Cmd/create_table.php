@@ -4,7 +4,7 @@
 
 function create_table($tableName)
 {
-    $tableName = $tableName . 'Table';
+    $tableName = underscoreToPascalCase($tableName) . 'Table';
     $directory = ROOTPATH . 'shell/Database/Table/';
 
     $filePath = $directory . $tableName . '.php';
