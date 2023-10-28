@@ -97,12 +97,6 @@ use Core\Router\RouteSystem; ?>
 
         <h1 style="text-align: center;">Welcome to Homepage</h1>
 
-        <form action="<?= ROUTER->postRoute('test') ?>" method="post">
-            <input type="text" name="dk">
-            <?php _csrf() ?>
-            <button type="submit">SUBMIT</button>
-        </form>
-
         <?php d(REQUEST) ?>
         <hr>
         <div class="table-of-contents">

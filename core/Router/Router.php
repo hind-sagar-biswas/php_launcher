@@ -3,6 +3,7 @@
 namespace Core\Router;
 
 use Core\Base\Request;
+use Core\Security\Csrf;
 use Core\Base\RequestType;
 
 class Router
@@ -16,6 +17,7 @@ class Router
         } else {
             $this->router = (REQUEST->type === RequestType::WEB) ? new WebRouter() : new ApiRouter();
         }
+        define('CSRF_TOKEN', (REQUEST->type === RequestType::WEB) ? Csrf::generateToken() : null);
     }
 
     public function route(Request $request)

@@ -34,7 +34,6 @@ define('DEV_URL', 'https://hind-sagar-biswas.github.io/portfolio/');
 define('DEV_CONTACT', '+880-1956-899240');
 // Tokens & Keys
 define('CSRF_ENABLED', $_ENV['CSRF_ENABLED']);
-define('CSRF_TOKEN', Csrf::generateToken());
 // App Info
 define('APP_KEY', $_ENV['APP_KEY']);
 define('APP_NAME', $_ENV['APP_NAME']);
