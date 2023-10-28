@@ -19,7 +19,8 @@ require_once __DIR__ . '/core/Cmd/stdio.php';
 $commands = [
     'install' => [],
     'create' => [
-        'table'
+        'table',
+        'seed',
     ],
     'migrate' => [
         'flush',
