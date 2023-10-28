@@ -28,7 +28,7 @@ StdIO::put(StdIO::green('Running the setup...') . PHP_EOL);
 StdIO::put(StdIO::yellow($command_count++ . "| ") . 'Please input correct details...');
 $vars = [
     'APP_NAME' => StdIO::get('App Name', 'My App | PHP Launcher'),
-    'APP_ROOT' => normalizePath(StdIO::get('App root', '/php_launcher')),
+    'APP_ROOT' => normalizePath(StdIO::get('App root', '/' . basename(ROOTPATH))),
     'APP_URL' => StdIO::get('App URL', 'http://localhost'),
     'APP_DEBUG' => StdIO::get('Debug mode', 'true', ['true', 'false']),
     'APP_ROUTE_SYSTEM' => (StdIO::get('Router system', 'raw', ['raw', 'ctr']) === 'ctr') ? 'controlled' : 'raw',

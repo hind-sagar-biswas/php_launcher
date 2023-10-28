@@ -7,7 +7,9 @@ use Core\Router\RouteSystem; ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= APP_NAME ?></title>
+
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA5NJREFUWEfVl3lQTVEcx7/npUULekSRQRtZstS02dqszwgxiLEVmmRozJgpRRjGMsyUyYT+4MWMmFHR2EfWkWVoQoZSWvSKSr3y6vXeu8fca1we6t480xvnz9855/v93N/53d+9hyQhSaL2dYonDIkGgQO6Y1AoqIQeNc8v3UvifOUJhJLd3eH7qwclNJHE+WQoCGBvDAAAChLvk0GNZM7Z/n8AZhY9MGRcfwxw7gPLXmYABVRKNerKlSgv/ITW5vYuJVR0Bvo62mDKilHwmD4ULMSfhk7LoOhOJW6mFaCuslkUiCgA1jhk7ViYmEpEiWratDiX9ABFtysF1wsCBKwejWnrx4FS4N0TBV7lVaCqqB7KOhUoA9j06wlnzwGYtGwketlZ8oY6DYO0yKuoftPQKUSnAOaWpth6aQFK8quRd/Ilaoo/g0gIvEJdOBBVo5oXt+pjjqj0mZA62vCxtw+rcSr21t8D/GnnggQ/eM5xRnr0DZQ9q9VbMkHmhLBEfz7GaBnsCs6ERq3rEELwCH7e6T7ZEcsPBnChY2uvoeLFJz1he1dbbMyQ6cUOL8xBfVXHBdklgI2nZbB3seUMDoVlo+FDi56Zg5stYuT6AAdCL6CpVmV4Bpw87RGRGsIJadt12Bl4FoxOv4mOChiM8H1TebNWZTv2zDgPylZwB0N0Bhbu8Mf4WU6cDFvZqSsv/yYZluiHCTJnPv4kuxjZ+x4ZXoTs+x9/dREsrEw5sacXS5C1N19PmM3Q6pQgSEy+9Qq1SoPk8Fw01XwxHMDVxwGrkoN5oZz9j/A4qxhWthYYOFyK4RMHwXueK9+oGIbi7La7eJX3DxoR6zp7kycmLnXnAdj0u09xRFCEx29Px/aGC3se4vW9qk6f/PukqBqIkc+Gg5uUL8BdQZmwllpg8vKRsBvWG6ZmJmiub0XZ848ouFKKthaNKHN2kSCAmWUPJN5cDImEcKK1pY1ICc8VbSC0UBBgiIcd1h2fweu8L/iIE1HXhXRFzwsCeM11wfx4X17wzYMPkG/JE20gtFAQIDjSA0GRP4qt8Pp7ZG6/L6Qrel4QQBbrBf/FI7rUXES7iylC2WYv+C/5AXD/TBGuHHnWFQ/DGlHgmjEIWTeWF2HTzx7DvxqCRyAdZA3v+W7cz2bZ81pUFOp/gg0FEQQw1EBov/EB4nzkCgJilKsZpbTG+JfT79dzUGzorkxQ0BoQpLLX868VMGqyT8FvvAAAAABJRU5ErkJggg==" type="image/png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -94,6 +96,12 @@ use Core\Router\RouteSystem; ?>
         </h4>
 
         <h1 style="text-align: center;">Welcome to Homepage</h1>
+
+        <form action="<?= ROUTER->postRoute('test') ?>" method="post">
+            <input type="text" name="dk">
+            <?php _csrf() ?>
+            <button type="submit">SUBMIT</button>
+        </form>
 
         <?php d(REQUEST) ?>
         <hr>
