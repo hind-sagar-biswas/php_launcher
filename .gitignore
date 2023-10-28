@@ -8,4 +8,4 @@ vendor/
 /temp/
 /logs/
 db_dump_*.sql
-_plt_*
+/_plt_*
