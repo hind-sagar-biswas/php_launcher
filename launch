@@ -32,7 +32,8 @@ $commands = [
 
 $args = array_slice($argv, 1);
 if (empty($args) || $args[0] == 'install' || $args[0] == 'i') {
-    require_once __DIR__ . '/core/Cmd/bootstrap.php';
+    if (isset($args[1]) && in_array($args[1], ['-q', '--quite'])) require_once __DIR__ . '/core/Cmd/bootstrap.quite.php';
+    else require_once __DIR__ . '/core/Cmd/bootstrap.php';
     exit();
 }
 
