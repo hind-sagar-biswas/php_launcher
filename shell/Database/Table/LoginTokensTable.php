@@ -2,14 +2,14 @@
 
 namespace Shell\Database\Table;
 
-use Core\Db\DatabaseTable;
+use Core\Auth\TokenTable;
 use Core\Db\DB;
 use Hindbiswas\QueBee\Col;
 use Hindbiswas\QueBee\Table;
 use Hindbiswas\QueBee\Table\CreateTable;
 use Hindbiswas\QueBee\Table\Values\FK;
 
-class LoginTokensTable extends DatabaseTable
+class LoginTokensTable extends TokenTable
 {
     public function __construct()
     {
