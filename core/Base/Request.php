@@ -20,7 +20,6 @@ class Request
     public function __construct()
     {
         $request_uri = $_SERVER['REQUEST_URI'];
-        var_dump($request_uri);
         $parsed_uri = parse_url($request_uri);
         $req_path = $parsed_uri['path'];
 

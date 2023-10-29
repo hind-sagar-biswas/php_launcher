@@ -2,7 +2,7 @@
 
 use Hindbiswas\Phpdotenv\StdIO;
 
-$VERSION = 'v0.2.0-beta ';
+$VERSION = 'v0.2.1-beta ';
 $AUTHOR = 'Hind Sagar Biswas ';
 $REPO = 'https://github.com/hind-sagar-biswas/php_launcher ';
 
