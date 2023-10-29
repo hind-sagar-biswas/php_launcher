@@ -38,6 +38,7 @@ $vars = [
     'DATABASE_USERNAME' => StdIO::get('Database username', 'root'),
     'DATABASE_PASSWORD' => StdIO::get('Database password', ''),
 ];
+$vars['APP_URL'] = (str_ends_with($vars['APP_URL'], '/')) ? $vars['APP_URL'] : $vars['APP_URL'] . '/';
 
 // Get template from .env.example
 StdIO::put(StdIO::yellow($command_count++ . "| ") . 'Reading ENV variables tempplate...');
@@ -61,8 +62,9 @@ fclose($fp);
 StdIO::put(StdIO::yellow($command_count++ . "| ") . 'Generating .htaccess file...');
 $file = ROOTPATH . ".htaccess";
 $fp = fopen($file, "w");
+$base_for_htaccess = (str_starts_with($vars['APP_ROOT'], '/')) ? $vars['APP_ROOT'] : '/' . $vars['APP_ROOT'];
 fwrite($fp, "RewriteEngine On
-RewriteBase " . $vars['APP_ROOT'] . "/
+RewriteBase " . $base_for_htaccess . "
 
 RewriteCond %{DOCUMENT_ROOT}/assets/$1 -f
 RewriteRule ^(.+) assets/$1 [L]

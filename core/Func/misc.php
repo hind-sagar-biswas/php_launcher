@@ -27,14 +27,14 @@ function formatCurrency(?int $num): int|string
 
 function normalizePath($string)
 {
-    // Remove the slash at the end of the string if there is one.
-    if (substr($string, -1) === '/') {
-        $string = substr($string, 0, -1);
+    // Remove the slash at the beginning of the string if there is one.
+    if (substr($string, 0, 1) === '/') {
+        $string = substr($string, 1);
     }
 
-    // Add a slash at the beginning of the string if there isn't one.
-    if (!str_starts_with($string, '/')) {
-        $string = '/' . $string;
+    // Add a slash at the end of the string if there isn't one.
+    if (!str_ends_with($string, '/') && !empty($string)) {
+        $string = $string . '/';
     }
 
     return $string;
