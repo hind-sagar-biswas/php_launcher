@@ -2,17 +2,19 @@
 
 declare(strict_types=1);
 
+// Start a PHP session
 session_start();
+// Regenerate session ID (uncomment to enable)
 // session_regenerate_id(true);
 
-// Paths
+// Define paths
 define('ROOTPATH', __DIR__ . '/../');
 define('ERR_PAGES', ROOTPATH . 'shell/errors/');
 
-// Pre requires
+// Require the Composer autoload file
 require_once ROOTPATH . 'vendor/autoload.php';
 
-// Class Uses
+// Use statements
 use Core\Base\Request;
 use Core\Router\Router;
 use Core\Security\Csrf;
@@ -20,15 +22,16 @@ use Core\Base\RequestType;
 use Core\Router\RouteSystem;
 use Hindbiswas\Phpdotenv\DotEnv;
 
-// Load Env Variables
+// Load environment variables from .env file
 $dotEnv = new DotEnv(ROOTPATH . 'shell'); // Location where .env file exists
 $dotEnv->load();
+
 // Handle CSRF tokens
 $_csrf_token_key = (isset($_SESSION['key'])) ? $_SESSION['key'] : null;
 $_csrf_token_hash = (isset($_SESSION['hash'])) ? $_SESSION['hash'] : null;
 
-//// CONSTANTS
-// DEVELOPER
+// Constants
+// Developer information
 define('DEV_NAME', 'Hind Sagar Biswas');
 define('DEV_URL', 'https://hind-sagar-biswas.github.io/portfolio/');
 define('DEV_CONTACT', '+880-1956-899240');
@@ -55,16 +58,25 @@ define('APP_ROUTE_SYS', RouteSystem::tryFrom($_ENV['APP_ROUTE_SYSTEM']) ?? Route
 define('REQUEST', (isset($_SERVER['REQUEST_URI'])) ? new Request() : null);
 define('ALERT', (isset($_SESSION['message'])) ? $_SESSION['message'] : null);
 
-if (REQUEST) $Router = new Router(APP_ROUTE_SYS);
+// Create a Router object if REQUEST is available
+if (REQUEST) {
+    $Router = new Router(APP_ROUTE_SYS);
+}
 
-// Requires
+// Require utility functions
 require_once ROOTPATH . 'core/Func/functions.php';
 
-// Shells
-if (REQUEST && APP_ROUTE_SYS !== RouteSystem::RAW) require_once ROOTPATH . 'shell/routes/' . ((REQUEST->type === RequestType::WEB) ? 'web.php' : 'api.php');
+// Include route files if using a non-RAW route system
+if (REQUEST && APP_ROUTE_SYS !== RouteSystem::RAW) {
+    require_once ROOTPATH . 'shell/routes/' . ((REQUEST->type === RequestType::WEB) ? 'web.php' : 'api.php');
+}
+
+// Include extension file
 require_once ROOTPATH . 'shell/extend.php';
 
-// Router
-if (REQUEST) define('ROUTER', $Router);
-unset($Router);
-unset($_SESSION['message']);
+// Set ROUTER constant if REQUEST is available, and clean up variables
+if (REQUEST) {
+    define('ROUTER', $Router);
+    unset($Router);
+    unset($_SESSION['message']);
+}

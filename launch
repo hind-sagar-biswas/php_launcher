@@ -3,19 +3,23 @@
 use Hindbiswas\Phpdotenv\StdIO;
 use Hindbiswas\Phpdotenv\DotEnv;
 
+// Define the root path
 define('ROOTPATH', __DIR__ . '/');
 
-
 try {
+    // Attempt to include the Composer autoload file
     require_once __DIR__ . '/vendor/autoload.php';
 } catch (\Throwable $th) {
+    // If the autoload file is not found, install dependencies with Composer
     shell_exec('composer install');
     require_once __DIR__ . '/vendor/autoload.php';
 }
 
+// Include custom utility functions and standard input/output handling
 require_once __DIR__ . '/core/Func/functions.php';
 require_once __DIR__ . '/core/Cmd/stdio.php';
 
+// Define available commands and their subcommands
 $commands = [
     'install' => [],
     'create' => [
@@ -30,17 +34,26 @@ $commands = [
     ]
 ];
 
+// Get command-line arguments, excluding the script name
 $args = array_slice($argv, 1);
+
+// If no arguments provided or the first argument is 'install' or 'i', run the installation script
 if (empty($args) || $args[0] == 'install' || $args[0] == 'i') {
-    if (isset($args[1]) && in_array($args[1], ['-q', '--quite'])) require_once __DIR__ . '/core/Cmd/bootstrap.quite.php';
-    else require_once __DIR__ . '/core/Cmd/bootstrap.php';
+    // Check for a quiet flag and load the appropriate bootstrap
+    if (isset($args[1]) && in_array($args[1], ['-q', '--quite'])) {
+        require_once __DIR__ . '/core/Cmd/bootstrap.quite.php';
+    } else {
+        require_once __DIR__ . '/core/Cmd/bootstrap.php';
+    }
     exit();
 }
 
-
+// Check if the first argument is a valid command
 if (array_key_exists($args[0], $commands)) {
     $subCommands = $commands[$args[0]];
+    // Check if the second argument is a valid subcommand for the chosen command
     if (in_array($args[1], $subCommands)) {
+        // Load the .env file and define database-related constants
         $dotEnv = new DotEnv(ROOTPATH . 'shell'); // Location where .env file exists
         $dotEnv->load();
 
@@ -49,13 +62,19 @@ if (array_key_exists($args[0], $commands)) {
         define('DB_NAME', $_ENV['DB_DATABASE']);
         define('DB_USER', $_ENV['DB_USERNAME']);
         define('DB_PASS', $_ENV['DB_PASSWORD']);
-        
+
         $name = $args[0] . '_' . $args[1];
+        // Include the appropriate command script
         require_once  __DIR__ . "/core/Cmd/$name.php";
 
         StdIO::put('Running `' . StdIO::yellow($name) . '`');
 
+        // Pass the remaining arguments to the command function and execute it
         $argsToPass = array_slice($args, 2);
         call_user_func($name, ...$argsToPass);
-    } else StdIO::put("🟠 No subcomand called `" . $args[1] . "` present for `" . $args[0] . "`");
-} else StdIO::put("🟠 No comand called `" . $args[0] . "` present for `launch.php`");
+    } else {
+        StdIO::put("🟠 No subcommand called `" . $args[1] . "` present for `" . $args[0] . "`");
+    }
+} else {
+    StdIO::put("🟠 No command called `" . $args[0] . "` present for `launch.php`");
+}
