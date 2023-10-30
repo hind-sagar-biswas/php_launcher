@@ -29,7 +29,7 @@ php launch
 
 Now you are all set up! You'll find more docs when you visit the homepage of the project without making any changes.
 
-## Table of Contant
+## Table of Contents
 1. Declare Custom Routes
 2. Move to Raw Routes
 3. Debugging
@@ -38,11 +38,11 @@ Now you are all set up! You'll find more docs when you visit the homepage of the
 
 ___
 
-## Declare custome routes:
+## Declare custom routes:
 
 #### Step 1: Enable custom router
 
-To enable controled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the following
+To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the follwing
 
 ```shell
 APP_ROUTE_SYSTEM=controlled
@@ -136,7 +136,7 @@ Use ``_node_css()`` function to get the css inclusion code
 Use ``_node_js()`` function to get the js inclusion code
 
 ```php
-<?php _node_js('path/to/filename.extension');
+<?php _node_js('path/to/filename.extension'); ?>
 // output:
 //<script defer src="http://url/node_modules/path/to/filename.extension"></script>
 
@@ -152,11 +152,11 @@ CSRF_ENABLED=true
 ```
 **Include CSRF token to Forms**
 
-CSRF protection is only needed in ``post `` requests. So, you need to include the CSRF token as a hidden inout element in every ``form:post`` forms. To do that just call ``_csrf()`` function.
+CSRF protection is only needed in ``post `` requests. So, you need to include the CSRF token as a hidden input element in every ``form:post`` forms. To do that just call ``_csrf()`` function.
 
 ```php
 <form action="<?= ROUTER->postRoute('route.name') ?>" method="Post">
 <?php _csrf() ?>
-<!-- other input feilds and submit button here -->
+<!-- other input fields and submit button here -->
 </form>
 ```
