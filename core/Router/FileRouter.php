@@ -21,7 +21,7 @@ class FileRouter
         $extensions = ['.php', '.html'];
 
         foreach ($extensions as $ext) {
-            $file = ($Request->route === '/') ? 'index/' . $ext : substr($Request->route, 0, -1) . $ext;
+            $file = ($Request->route === '/') ? 'index' . $ext : substr($Request->route, 0, -1) . $ext;
             $path_to_file = ROOTPATH . $Request->type->value . '/' . $file;
 
             if (file_exists($path_to_file)) {

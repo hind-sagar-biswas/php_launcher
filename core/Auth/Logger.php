@@ -80,16 +80,15 @@ class Logger
 
         $user = $this->auth_table->get_entry_by_key($val, $val_col);
 
-        if ($user['types'] == 'staff' && $user['access'] == 0)
-            return ['success' => false, 'response' => LoginResponse::MISMATCHED_CREDENTIAL];
-
         // Try to save user-related data in the session
         if (!$this->save_to_session($user))
             return ['success' => false, 'response' => LoginResponse::UNKNOWN];
 
-        if ($this->token_table && isset($Request->data['_remember_me']) && !empty($Request->data['_remember_me'])) {
+        if ($this->token_table && isset($Request->data['_remember_me'])) {
             $this->remember_me($user[$this->auth_table->table->get_pk()]);
         }
+
+        $user = array_filter($user, fn ($k): bool => ($k !== $this->auth_table->key), ARRAY_FILTER_USE_KEY);
 
         return [
             'success' => true,
@@ -102,6 +101,7 @@ class Logger
     {
         // remove the remember_me cookie if enables
         if ($this->token_table) {
+            $this->delete_token($this->get_val($this->auth_table->table->get_pk()));
             CookieJar::unset('_remember_me');
         }
         session_destroy(); // Destroy the session
@@ -185,7 +185,7 @@ class Logger
         return $this->auth_table->get_entry_by_key($auth_key, $this->auth_table->table->get_pk());
     }
 
-    protected function create_token(string|int $foreign_target_value, string $selector, string $validator, string $expiry): bool
+    protected function create_token(string|int $foreign_target_value, string $selector, string $validator, string $expiry)
     {
         $data = [
             $this->token_table->foreign_target => $foreign_target_value,
