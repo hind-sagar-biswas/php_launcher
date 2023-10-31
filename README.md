@@ -47,7 +47,7 @@ We have our own installer software which eases the installation process via whic
 
 ### Step 1: Enable custom router
 
-To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the follwing
+To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of `APP_ROUTE_SYSTEM` to the follwing
 
 ```env
 APP_ROUTE_SYSTEM=controlled
