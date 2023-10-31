@@ -9,34 +9,21 @@
 
 It is a pseudo-framework for PHP developers to get a quick start with their projects with the highest control and lowest learning curve!
 
-## Installing and getting started
-
-### Step 1: Downloading/Cloning the code
-
-Download the code of this repository or clone it *(if cloned, be sure to remove `.git` and `.github` folder)*. To clone run:
-
-```
-https://github.com/hind-sagar-biswas/php_launcher.git
-```
-
-### Step 2: Run the launcher
-
-Rename the folder to your project and then enter it. Then run the follwing code. Be sure to have internet connection as it will install composer packages too. Then run the follwing command and it'll guide you through an easy installation process where you'll need to provide informations on the project.
-
-```
-php launch
-```
-
-Now you are all set up! You'll find more docs when you visit the homepage of the project without making any changes.
-
 ## Table of Contents
-1. Declare Custom Routes
-2. Move to Raw Routes
-3. Debugging
-4. Including Static Files
-5. CSRF Protection
+1. [Getting Started](#getting-started)
+2. [Declare Custom Routes](#declare-custom-routes)
+3. [Move to Raw Routes](#move-to-raw-routes)
+4. [Debugging](#debugging)
+5. [Including Static Files](#including-static-files)
+6. [CSRF Protection](#csrf-protection)
 
 ___
+
+## Getting started
+
+### Step 1: Installation
+
+We have our own installer software which eases the installation process via which you can get started with your projects with a few clicks. The installer is called [PL Installer](https://github.com/hind-sagar-biswas/pl_installer). Go to the repo, then go to [Releases](https://github.com/hind-sagar-biswas/pl_installer/releases) and download binary/exe from the latest release. After downloading, just run it and follow the instructions and you are done!
 
 ## Declare custom routes:
 
