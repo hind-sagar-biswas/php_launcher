@@ -51,16 +51,16 @@
         },
         {
             "name": "hindbiswas/quebee",
-            "version": "v1.1.2",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hind-sagar-biswas/quebee.git",
-                "reference": "21420e42086a0721faafd89b58d4a81c82d676d9"
+                "reference": "215a1b62402f4be98fee5ca1b9bb637db75d837e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hind-sagar-biswas/quebee/zipball/21420e42086a0721faafd89b58d4a81c82d676d9",
-                "reference": "21420e42086a0721faafd89b58d4a81c82d676d9",
+                "url": "https://api.github.com/repos/hind-sagar-biswas/quebee/zipball/215a1b62402f4be98fee5ca1b9bb637db75d837e",
+                "reference": "215a1b62402f4be98fee5ca1b9bb637db75d837e",
                 "shasum": ""
             },
             "require": {
@@ -88,9 +88,9 @@
             "description": "Qb - a lightweight Query Builder for SQL",
             "support": {
                 "issues": "https://github.com/hind-sagar-biswas/quebee/issues",
-                "source": "https://github.com/hind-sagar-biswas/quebee/tree/v1.1.2"
+                "source": "https://github.com/hind-sagar-biswas/quebee/tree/v1.2.0"
             },
-            "time": "2023-09-30T13:05:30+00:00"
+            "time": "2023-10-31T21:29:02+00:00"
         }
     ],
     "packages-dev": [],
