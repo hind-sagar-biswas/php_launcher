@@ -31,7 +31,7 @@ We have our own installer software which eases the installation process via whic
 
 To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the follwing
 
-```shell
+```env
 APP_ROUTE_SYSTEM=controlled
 ```
 #### Step 2: Create routes
@@ -54,8 +54,8 @@ There, use ``Router::get('/route/path/')-name('route.name')->call('file.name')``
 
 #### step 1: Enable raw router
 
-To enable raw/filesystem based routes insted of declarative and controlled ones, go to ``/shell/.ev`` and change the value of  ``APP_ROUTE_SYSTEM`` to the following
-```shell
+To enable raw/filesystem based routes insted of declarative and controlled ones, go to ``/shell/.env`` and change the value of  ``APP_ROUTE_SYSTEM`` to the following
+```env
 APP_ROUTE_SYSTEM=raw
 ```
 Now the routes will follow the name of the file,``url/path/to/filename/`` will output the contents of ``./facade/path/to/filename.php``
@@ -78,7 +78,7 @@ Static files are kept in either`` ./assets/`` or ``./node_modules/`` directory. 
 
 Use ``_image()`` function to get the path
 
-```php
+```blade
 <img src="<?= _image('filename.extension') ?>" alt="">
 <!-- output -->
 <!-- <img src="href="http://url/assets/images/filename.extension" alt=""> -->
@@ -134,14 +134,14 @@ Use ``_node_js()`` function to get the js inclusion code
 **!! Enable Csrf**
 
 First enable csrf from ``.env`` file and to do that , go to`` /shell/.env`` and change the value of ``CSRF_ENABLED`` to the following 
-```php
+```env
 CSRF_ENABLED=true
 ```
 **Include CSRF token to Forms**
 
 CSRF protection is only needed in ``post `` requests. So, you need to include the CSRF token as a hidden input element in every ``form:post`` forms. To do that just call ``_csrf()`` function.
 
-```php
+```blade
 <form action="<?= ROUTER->postRoute('route.name') ?>" method="Post">
 <?php _csrf() ?>
 <!-- other input fields and submit button here -->
