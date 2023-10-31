@@ -9,42 +9,29 @@
 
 It is a pseudo-framework for PHP developers to get a quick start with their projects with the highest control and lowest learning curve!
 
-## Installing and getting started
-
-### Step 1: Downloading/Cloning the code
-
-Download the code of this repository or clone it *(if cloned, be sure to remove `.git` and `.github` folder)*. To clone run:
-
-```
-https://github.com/hind-sagar-biswas/php_launcher.git
-```
-
-### Step 2: Run the launcher
-
-Rename the folder to your project and then enter it. Then run the follwing code. Be sure to have internet connection as it will install composer packages too. Then run the follwing command and it'll guide you through an easy installation process where you'll need to provide informations on the project.
-
-```
-php launch
-```
-
-Now you are all set up! You'll find more docs when you visit the homepage of the project without making any changes.
-
-## Table of Contant
-1. Declare Custom Routes
-2. Move to Raw Routes
-3. Debugging
-4. Including Static Files
-5. CSRF Protection
+## Table of Contents
+1. [Getting Started](#getting-started)
+2. [Declare Custom Routes](#declare-custom-routes)
+3. [Move to Raw Routes](#move-to-raw-routes)
+4. [Debugging](#debugging)
+5. [Including Static Files](#including-static-files)
+6. [CSRF Protection](#csrf-protection)
 
 ___
 
-## Declare custome routes:
+## Getting started
+
+### Step 1: Installation
+
+We have our own installer software which eases the installation process via which you can get started with your projects with a few clicks. The installer is called [PL Installer](https://github.com/hind-sagar-biswas/pl_installer). Go to the repo, then go to [Releases](https://github.com/hind-sagar-biswas/pl_installer/releases) and download binary/exe from the latest release. After downloading, just run it and follow the instructions and you are done!
+
+## Declare custom routes:
 
 #### Step 1: Enable custom router
 
-To enable controled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the following
+To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the follwing
 
-```shell
+```env
 APP_ROUTE_SYSTEM=controlled
 ```
 #### Step 2: Create routes
@@ -67,8 +54,8 @@ There, use ``Router::get('/route/path/')-name('route.name')->call('file.name')``
 
 #### step 1: Enable raw router
 
-To enable raw/filesystem based routes insted of declarative and controlled ones, go to ``/shell/.ev`` and change the value of  ``APP_ROUTE_SYSTEM`` to the following
-```shell
+To enable raw/filesystem based routes insted of declarative and controlled ones, go to ``/shell/.env`` and change the value of  ``APP_ROUTE_SYSTEM`` to the following
+```env
 APP_ROUTE_SYSTEM=raw
 ```
 Now the routes will follow the name of the file,``url/path/to/filename/`` will output the contents of ``./facade/path/to/filename.php``
@@ -91,7 +78,7 @@ Static files are kept in either`` ./assets/`` or ``./node_modules/`` directory. 
 
 Use ``_image()`` function to get the path
 
-```php
+```blade
 <img src="<?= _image('filename.extension') ?>" alt="">
 <!-- output -->
 <!-- <img src="href="http://url/assets/images/filename.extension" alt=""> -->
@@ -136,7 +123,7 @@ Use ``_node_css()`` function to get the css inclusion code
 Use ``_node_js()`` function to get the js inclusion code
 
 ```php
-<?php _node_js('path/to/filename.extension');
+<?php _node_js('path/to/filename.extension'); ?>
 // output:
 //<script defer src="http://url/node_modules/path/to/filename.extension"></script>
 
@@ -147,16 +134,16 @@ Use ``_node_js()`` function to get the js inclusion code
 **!! Enable Csrf**
 
 First enable csrf from ``.env`` file and to do that , go to`` /shell/.env`` and change the value of ``CSRF_ENABLED`` to the following 
-```php
+```env
 CSRF_ENABLED=true
 ```
 **Include CSRF token to Forms**
 
-CSRF protection is only needed in ``post `` requests. So, you need to include the CSRF token as a hidden inout element in every ``form:post`` forms. To do that just call ``_csrf()`` function.
+CSRF protection is only needed in ``post `` requests. So, you need to include the CSRF token as a hidden input element in every ``form:post`` forms. To do that just call ``_csrf()`` function.
 
-```php
+```blade
 <form action="<?= ROUTER->postRoute('route.name') ?>" method="Post">
 <?php _csrf() ?>
-<!-- other input feilds and submit button here -->
+<!-- other input fields and submit button here -->
 </form>
 ```
