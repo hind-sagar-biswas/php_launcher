@@ -55,8 +55,8 @@ APP_ROUTE_SYSTEM=controlled
 
 ### Step 2: Create routes
 
-To declare routes go to `/shell/routes/`.In there, there are 2 files i.e `web.php`[that controlls norma routes where response is html]and `api.php`[which controlls api routes for urls starting with `/api/` and response type is JSON].The files content looks like this:
-
+To declare routes go to `/shell/routes/`.In there, there are 2 files i.e `web.php` [that controlls norma routes where response is html] and `api.php` [which controlls api routes for urls starting with `/api/` and response type is JSON].The files content looks like this:
+ 
 ```php
 <?php
 
