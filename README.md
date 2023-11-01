@@ -80,7 +80,7 @@ To enable raw/filesystem based routes insted of declarative and controlled ones,
 APP_ROUTE_SYSTEM=raw
 ```
 
-Now the routes will follow the name of the file,`url/path/to/filename/` will output the contents of `./facade/path/to/filename.php`
+Now the routes will follow the name of the file, `url/path/to/filename/` will output the contents of  `./facade/path/to/filename.php`
 
 ## Debugging
 
@@ -94,7 +94,7 @@ To dump variables and stop execution, use `dd()` function
 
 ## Including static files
 
-Static files are kept in either`./assets/` or `./node_modules/` directory. CSS, JS and Images are in respectively `/css/`,`/js/` and `/images/ `directory inside `./assets/`
+Static files are kept in either `./assets/` or `./node_modules/` directory. CSS, JS and Images are in respectively `/css/`, `/js/` and `/images/ ` directory inside `./assets/`
 
 ### 1.Images
 
@@ -155,7 +155,7 @@ Use `_node_js()` function to get the js inclusion code
 
 ## !! Enable Csrf
 
-First enable csrf from `.env` file and to do that , go to` /shell/.env` and change the value of `CSRF_ENABLED` to the following
+First enable csrf from `.env` file and to do that, go to ` /shell/.env` and change the value of  `CSRF_ENABLED` to the following
 
 ```env
 CSRF_ENABLED=true
