@@ -47,7 +47,7 @@ We have our own installer software which eases the installation process via whic
 
 ### Step 1: Enable custom router
 
-To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of ``APP_ROUTE_SYSTEM`` to the follwing
+To enable controlled/custom routes insted of filesystem,go to `/shell/.ev` and change the value of `APP_ROUTE_SYSTEM` to the follwing
 
 ```env
 APP_ROUTE_SYSTEM=controlled
@@ -55,8 +55,8 @@ APP_ROUTE_SYSTEM=controlled
 
 ### Step 2: Create routes
 
-To declare routes go to ``/shell/routes/``.In there, there are 2 files i.e ``web.php``[that controlls norma routes where response is html]and ``api.php``[which controlls api routes for urls starting with ``/api/`` and response type is JSON].The files content looks like this:
-
+To declare routes go to `/shell/routes/`.In there, there are 2 files i.e `web.php` [that controlls norma routes where response is html] and `api.php` [which controlls api routes for urls starting with `/api/` and response type is JSON].The files content looks like this:
+ 
 ```php
 <?php
 
@@ -68,37 +68,37 @@ $Router->add_routes(
 
 ```
 
-There, use ``Router::get('/route/path/')-name('route.name')->call('file.name')`` format to declare new routes 
+There, use `Router::get('/route/path/')-name('route.name')->call('file.name')` format to declare new routes 
 
 ## Move to raw routes:
 
 ### step 1: Enable raw router
 
-To enable raw/filesystem based routes insted of declarative and controlled ones, go to ``/shell/.env`` and change the value of  ``APP_ROUTE_SYSTEM`` to the following
+To enable raw/filesystem based routes insted of declarative and controlled ones, go to `/shell/.env` and change the value of  `APP_ROUTE_SYSTEM` to the following
 
 ```env
 APP_ROUTE_SYSTEM=raw
 ```
 
-Now the routes will follow the name of the file,``url/path/to/filename/`` will output the contents of ``./facade/path/to/filename.php``
+Now the routes will follow the name of the file, `url/path/to/filename/` will output the contents of  `./facade/path/to/filename.php`
 
 ## Debugging
 
 ### Dump
 
-To dump variables, use ``d()`` function
+To dump variables, use `d()` function
 
 ### Die Dump
 
-To dump variables and stop execution, use ``dd()`` function
+To dump variables and stop execution, use `dd()` function
 
 ## Including static files
 
-Static files are kept in either`` ./assets/`` or ``./node_modules/`` directory. CSS, JS and Images are in respectively ``/css/``,``/js/`` and ``/images/ ``directory inside ``./assets/``
+Static files are kept in either `./assets/` or `./node_modules/` directory. CSS, JS and Images are in respectively `/css/`, `/js/` and `/images/ ` directory inside `./assets/`
 
 ### 1.Images
 
-Use ``_image()`` function to get the path
+Use `_image()` function to get the path
 
 ```blade
 <img src="<?= _image('filename.extension') ?>" alt="">
@@ -108,7 +108,7 @@ Use ``_image()`` function to get the path
 
 ### 2. CSS
 
-Use ``_css()`` function to get the css inclusion code
+Use `_css()` function to get the css inclusion code
 
 ```php
 <?php _css('filename');
@@ -120,7 +120,7 @@ Use ``_css()`` function to get the css inclusion code
 
 ### 3. JS
 
-Use ``_js()`` function to get the js inclusion code
+Use `_js()` function to get the js inclusion code
 
 ```php
 <?php _js('filename');
@@ -131,7 +131,7 @@ Use ``_js()`` function to get the js inclusion code
 
 ### 4. [node_module] CSS
 
-Use ``_node_css()`` function to get the css inclusion code
+Use `_node_css()` function to get the css inclusion code
 
 ```php
 <?php _node_css('path/to/filename.extension');
@@ -142,7 +142,7 @@ Use ``_node_css()`` function to get the css inclusion code
 
 ### 5. [node_module] JS
 
-Use ``_node_js()`` function to get the js inclusion code
+Use `_node_js()` function to get the js inclusion code
 
 ```php
 <?php _node_js('path/to/filename.extension'); ?>
@@ -155,7 +155,7 @@ Use ``_node_js()`` function to get the js inclusion code
 
 ## !! Enable Csrf
 
-First enable csrf from ``.env`` file and to do that , go to`` /shell/.env`` and change the value of ``CSRF_ENABLED`` to the following
+First enable csrf from `.env` file and to do that, go to ` /shell/.env` and change the value of  `CSRF_ENABLED` to the following
 
 ```env
 CSRF_ENABLED=true
@@ -163,7 +163,7 @@ CSRF_ENABLED=true
 
 ## Include CSRF token to Forms
 
-CSRF protection is only needed in ``post `` requests. So, you need to include the CSRF token as a hidden input element in every ``form:post`` forms. To do that just call ``_csrf()`` function.
+CSRF protection is only needed in `post ` requests. So, you need to include the CSRF token as a hidden input element in every `form:post` forms. To do that just call `_csrf()` function.
 
 ```blade
 <form action="<?= ROUTER->postRoute('route.name') ?>" method="Post">
