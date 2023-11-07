@@ -35,7 +35,7 @@ $_csrf_token_hash = (isset($_SESSION['hash'])) ? $_SESSION['hash'] : null;
 define('DEV_NAME', 'Hind Sagar Biswas');
 define('DEV_URL', 'https://hind-sagar-biswas.github.io/portfolio/');
 define('DEV_CONTACT', '+880-1956-899240');
-// Tokens & Keys
+// Security
 define('CSRF_ENABLED', ($_ENV['CSRF_ENABLED'] === 'true') ? true : false);
 // App Info
 define('APP_KEY', $_ENV['APP_KEY']);
@@ -60,6 +60,12 @@ define('ALERT', (isset($_SESSION['message'])) ? $_SESSION['message'] : null);
 
 // Create a Router object if REQUEST is available
 if (REQUEST) {
+    // Header declarations
+    header('X-Content-Type-Options: nosniff');
+    header('X-XSS-Protection: 1; mode=block');
+    if ($_ENV['X_FRAME_ENABLED'] !== 'true') header('X-Frame-Options: SAMEORIGIN');
+
+    // Router Obj
     $Router = new Router(APP_ROUTE_SYS);
 }
 
