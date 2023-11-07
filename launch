@@ -6,14 +6,8 @@ use Hindbiswas\Phpdotenv\DotEnv;
 // Define the root path
 define('ROOTPATH', __DIR__ . '/');
 
-try {
-    // Attempt to include the Composer autoload file
-    require_once __DIR__ . '/vendor/autoload.php';
-} catch (\Throwable $th) {
-    // If the autoload file is not found, install dependencies with Composer
-    shell_exec('composer install');
-    require_once __DIR__ . '/vendor/autoload.php';
-}
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) shell_exec('composer install');
+require_once __DIR__ . '/vendor/autoload.php';
 
 // Include custom utility functions and standard input/output handling
 require_once __DIR__ . '/core/Func/functions.php';
