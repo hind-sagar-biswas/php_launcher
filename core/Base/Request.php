@@ -35,14 +35,17 @@ class Request
         parse_str($req_query_string, $req_query);
 
         // Append a trailing slash to the route if it doesn't have one
-        $route_to_look = (str_ends_with($req_route, '/')) ? $req_route : $req_route . '/';
+        $route_to_look = rtrim($req_route, '/') . '/';
+        // Remove the APP_API_ROOT if type API
+        $prepared_route = preg_replace('/' . preg_quote(APP_API_ROOT, '/') . '/', '/', $route_to_look, 1);
+        if (strlen($prepared_route) > 1 && $prepared_route[0] === '/') $prepared_route = ltrim($prepared_route, '/');
 
         // Set properties based on request information
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->type = RequestType::fromRoute($req_route);
         $this->full_url = APP_URL . $req_route . '?' . $req_query_string;
         $this->url = APP_URL . $req_route;
-        $this->route = preg_replace('/' . preg_quote(APP_API_ROOT, '/') . '/', '/', $route_to_look, 1);
+        $this->route = $prepared_route;
         $this->origin = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
 
         // Sanitize and store POST data
