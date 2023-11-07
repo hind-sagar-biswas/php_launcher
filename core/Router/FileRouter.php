@@ -21,11 +21,15 @@ class FileRouter
         $extensions = ['.php', '.html'];
 
         foreach ($extensions as $ext) {
-            $file = ($Request->route === '/') ? 'index' . $ext : substr($Request->route, 0, -1) . $ext;
-            $path_to_file = ROOTPATH . $Request->type->value . '/' . $file;
+            $file = ($Request->route === '/') ? 'index' : substr($Request->route, 0, -1);
+            $path_to_file = ROOTPATH . $Request->type->value . '/' . $file . $ext;
+            $path_to_estimated_index =  ROOTPATH . $Request->type->value . '/' . $file . '/index' . $ext;
 
             if (file_exists($path_to_file)) {
                 $path = $path_to_file;
+                break;
+            } elseif (file_exists($path_to_estimated_index)) {
+                $path = $path_to_estimated_index;
                 break;
             }
         }
@@ -34,9 +38,7 @@ class FileRouter
         if (!$path) {
             if (APP_DEBUG) d($Request);
             Response::terminateNotFound();
-        } else {
-            require $path;
-        }
+        } else require $path;
         $body_content = ob_get_clean();
         ob_end_clean();
 
