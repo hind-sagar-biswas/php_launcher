@@ -3,6 +3,7 @@
 namespace Core\Security;
 
 use Core\Security\Random;
+use OpenSSLAsymmetricKey;
 
-class Encrypt
+class Decryptor
 {}
