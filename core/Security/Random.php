@@ -37,6 +37,28 @@ class Random
         ];
     }
 
+    public static function IPv4()
+    {
+        // Generate 4 decimal octets
+        $ipv4Octets = [];
+        for ($i = 0; $i < 4; $i++) {
+            $ipv4Octets[] = mt_rand(0, 255);
+        }
+        // Assemble and return the IPv4 address by joining the octets with dots
+        return implode('.', $ipv4Octets);
+    }
+
+    public static function IPv6()
+    {
+        // Generate 8 groups of 4 hexadecimal characters separated by colons
+        $ipv6Groups = [];
+        for ($i = 0; $i < 8; $i++) {
+            $ipv6Groups[] = bin2hex(random_bytes(2));
+        }
+        // Assemble and return the IPv6 address by joining the groups with colons
+        return  implode(':', $ipv6Groups);
+    }
+
     public static function uid(int $length = 10): string
     {
         $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
