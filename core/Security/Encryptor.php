@@ -3,6 +3,7 @@
 namespace Core\Security;
 
 use Core\Security\Random;
+use InvalidArgumentException;
 
 class Encryptor
 {
@@ -20,6 +21,7 @@ class Encryptor
 
     public function setKeys(string $key): void
     {
+        if (empty($key)) throw new InvalidArgumentException("Key cannot be empty");
         $this->key = $key;
     }
 
@@ -28,18 +30,20 @@ class Encryptor
         return $this->key;
     }
 
-    public function changeCipher($cipher)
+    public function changeCipher(string $cipher): void
     {
         $this->cipher = $cipher;
     }
 
-    public function encrypt($data)
+    public function encrypt(mixed $data)
     {
         $data = json_encode($data);
 
         if ($this->type === EncryptionType::DUAL_KEY) {
             openssl_public_encrypt($data, $encrypted_data, $this->key);
-            return $encrypted_data;
+
+            if ($encrypted_data === false) throw new \Exception("Encryption failed");
+            return base64_encode($encrypted_data);
         }
 
         $ivlen = openssl_cipher_iv_length($this->cipher);

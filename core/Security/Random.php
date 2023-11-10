@@ -31,8 +31,10 @@ class Random
         ));
         $publicKey = openssl_pkey_get_details($privateKey)['key'];
 
+        openssl_pkey_export($privateKey, $pemKey);
+
         return [
-            $privateKey,
+            $pemKey,
             $publicKey,
         ];
     }
