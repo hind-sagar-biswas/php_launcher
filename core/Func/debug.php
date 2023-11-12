@@ -38,7 +38,7 @@ class Echoable
         $parsed = '';
         foreach ($data as $key => $value) {
             $parsed .= '<br>';
-            for ($i=0; $i <= $depth; $i++) { 
+            for ($i = 0; $i <= $depth; $i++) {
                 $parsed .= '&nbsp;&nbsp;&nbsp;&nbsp;';
             }
             $parsed .= "'$key' => " . self::parse($value, $depth + 1);
@@ -50,7 +50,7 @@ class Echoable
         $parsed = '';
         foreach ($data as $key => $value) {
             $parsed .= '<br>';
-            for ($i=0; $i <= $depth; $i++) { 
+            for ($i = 0; $i <= $depth; $i++) {
                 $parsed .= '&nbsp;&nbsp;&nbsp;&nbsp;';
             }
             $parsed .= "'$key' => " . self::parse($value, $depth + 1);
@@ -83,11 +83,29 @@ function d($data, string $header = 'DUMP'): void
     if (REQUEST->type === RequestType::WEB) {
 
         [$line, $file] = getCallLocation();
-
-        echo '<pre class="overflow-x-auto rounded-lg" style="background: #282c34; border-radius: 3px; color: #efefef; padding: 10px;">';
+        echo '<style>
+        .debug-data::-webkit-scrollbar {
+            height: 0.5em;
+        }
+        
+        .debug-data::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .debug-data::-webkit-scrollbar-thumb {
+            background-color: #844fa4;
+            outline: none;
+            border-radius: 3px;
+            transition: all 0.3s ease-in;
+        }
+        .debug-data::-webkit-scrollbar-thumb:hover {
+            background-color: #5a3671;
+        }
+                </style>';
+        echo '<pre style="background: #282c34; border-radius: 3px; color: #efefef; padding: 10px;">';
         echo PHP_EOL . "<span style='border-left: 5px solid #ad68d8; padding-left: 10px; font-size: 1.1rem;'>" . "\$_$header : " . "</span>";
-        echo PHP_EOL . "<div style='padding: 10px;'>" . Echoable::parse($data) . "</div>";
-        echo "<p style='border: 1px solid #333; padding: 5px 10px; margin: 0;  background: #262626'>";
+        echo PHP_EOL . "<div class='debug-data' style='padding: 10px; overflow-x: auto;'>" . Echoable::parse($data) . "</div>";
+        echo "<p style='border: 1px solid #333; padding: 5px 10px; margin: 5px 0 0 0;  background: #262626;'>";
         echo ">> line " . Echoable::int($line) . ", file: " . Echoable::str($file) . "</p>";
         echo '</pre>';
     } else {
