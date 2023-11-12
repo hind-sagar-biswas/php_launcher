@@ -3,6 +3,8 @@
 namespace Core\Security;
 
 use Core\Base\RequestType;
+use Core\Base\Url;
+use InvalidArgumentException;
 
 class Response
 {
@@ -65,9 +67,15 @@ class Response
         die();
     }
 
-    public static function redirect($destination, string $message = '')
+    public static function redirect($destination, string $message = '', ?array $query = null, mixed $data = null)
     {
+        if (!filter_var($destination, FILTER_VALIDATE_URL)) $destination = APP_URL . ltrim($destination, '/');
+        $url = new Url($destination);
+        if ($query) $url->addQuery($query);
+
+        if ($data) $data = json_encode($data);
+
         $_SESSION['message'] = $message;
-        header("Location: " .  APP_URL . '/' . $destination);
+        header("Location: " .  $url->build());
     }
 }

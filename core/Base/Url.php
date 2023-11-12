@@ -11,6 +11,7 @@ class Url
 
     public function __construct(string $base)
     {
+        if (empty($base)) throw new InvalidArgumentException("Url base can't be empty string");
         [$this->base, $this->query] = self::parse($base);
     }
 
@@ -45,15 +46,15 @@ class Url
         return $this->base;
     }
 
-    public function http(): self
+    public function https(): self
     {
-        $this->base = str_replace('https://', 'http://', $this->base, 1);
+        $this->base = preg_replace('/^http:\/\//', 'https://', $this->base, 1);
         return $this;
     }
 
-    public function https(): self
+    public function http(): self
     {
-        $this->base = str_replace('http://', 'https://', $this->base, 1);
+        $this->base = preg_replace('/^https:\/\//', 'http://', $this->base, 1);
         return $this;
     }
 
