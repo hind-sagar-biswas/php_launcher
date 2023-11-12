@@ -10,7 +10,7 @@ class Encryptor
     private ?string $key;
     public string $cipher = "aes-256-cbc";
 
-    public function __construct(public readonly EncryptionType $type)
+    public function __construct(public readonly EncryptionType $type = EncryptionType::SINGLE_KEY)
     {
     }
 
