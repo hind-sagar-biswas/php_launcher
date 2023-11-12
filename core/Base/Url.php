@@ -17,10 +17,8 @@ class Url
     public function addQuery(array $query): self
     {
         if (array_is_list($query)) throw new InvalidArgumentException("\$query must be associative array");
-        if ($this->$query) {
-            foreach ($query as $key => $value) $this->query[$key] = $value;
-        } else $this->query = $query;
 
+        $this->query = $this->query ? array_merge($this->query, $query) : $query;
         return $this;
     }
 
@@ -49,13 +47,13 @@ class Url
 
     public function http(): self
     {
-        str_replace('https://', 'http://', $this->base, 1);
+        $this->base = str_replace('https://', 'http://', $this->base, 1);
         return $this;
     }
 
     public function https(): self
     {
-        str_replace('http://', 'https://', $this->base, 1);
+        $this->base = str_replace('http://', 'https://', $this->base, 1);
         return $this;
     }
 
@@ -83,6 +81,6 @@ class Url
         $query = null;
         if (isset($parsedUrl['query'])) parse_str($parsedUrl['query'], $query);
 
-        return ($assoc) ? ['base' => $base, 'query' => $query] : [$base, $query];
+        return $assoc ? ['base' => $base, 'query' => $query] : [$base, $query];
     }
 }
