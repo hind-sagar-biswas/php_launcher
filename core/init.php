@@ -5,7 +5,7 @@ declare(strict_types=1);
 // Start a PHP session
 session_start();
 // Regenerate session ID (uncomment to enable)
-// session_regenerate_id(true);
+session_regenerate_id(true);
 
 // Define paths
 define('ROOTPATH', __DIR__ . '/../');
