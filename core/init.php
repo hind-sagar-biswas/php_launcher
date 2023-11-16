@@ -15,6 +15,8 @@ define('ERR_PAGES', ROOTPATH . 'shell/errors/');
 require_once ROOTPATH . 'vendor/autoload.php';
 
 // Use statements
+
+use Core\Base\ExceptionHandler;
 use Core\Base\Request;
 use Core\Router\Router;
 use Core\Base\RequestType;
@@ -84,4 +86,5 @@ if (REQUEST) {
     define('ROUTER', $Router);
     unset($Router);
     unset($_SESSION['message']);
+    set_exception_handler(ExceptionHandler::class . "::handle");
 }
