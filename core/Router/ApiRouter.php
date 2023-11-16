@@ -121,7 +121,7 @@ class ApiRouter
         }
 
         if ($path === null) {
-            Response::code(404, 'Requested API route not found', (APP_DEBUG === 'true') ? $Request : null);
+            Response::code(404, 'Requested API route not found', (APP_DEBUG) ? $Request : null);
         } elseif ($path) {
             require $path;
         }
