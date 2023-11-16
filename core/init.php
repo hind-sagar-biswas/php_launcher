@@ -17,7 +17,6 @@ require_once ROOTPATH . 'vendor/autoload.php';
 // Use statements
 use Core\Base\Request;
 use Core\Router\Router;
-use Core\Security\Csrf;
 use Core\Base\RequestType;
 use Core\Router\RouteSystem;
 use Hindbiswas\Phpdotenv\DotEnv;

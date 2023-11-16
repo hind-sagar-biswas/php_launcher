@@ -3,6 +3,7 @@
 namespace Core\Security;
 
 use Core\Base\RequestType;
+use Core\Base\Session;
 use Core\Base\Url;
 
 class Response
@@ -66,15 +67,25 @@ class Response
         die();
     }
 
-    public static function redirect($destination, string $message = '', ?array $query = null, mixed $data = null)
+    public static function redirect($destination, string $message = '', ?array $query = null, ?array $data = null, bool $auto = true)
     {
-        if (!filter_var($destination, FILTER_VALIDATE_URL)) $destination = APP_URL . ltrim($destination, '/');
-        $url = new Url($destination);
+        if ($auto) {
+            try {
+                $destination = ROUTER->getRoute($destination);
+            } catch (\Throwable $th) {
+                // Handle the exception if needed
+            }
+        }
+
+        $url = new Url(filter_var($destination, FILTER_VALIDATE_URL) ? $destination : APP_URL . ltrim($destination, '/'));
+
         if ($query) $url->addQuery($query);
 
-        if ($data) $data = json_encode($data);
+        if ($data && !array_is_list($data)) Session::set('_redirect_data', $data);
 
         $_SESSION['message'] = $message;
-        header("Location: " .  $url->build());
+        header("Location: " . $url->build());
+        exit();
     }
+
 }
