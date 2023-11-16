@@ -19,7 +19,7 @@ class Session
         $_SESSION[self::key($name)] = $enc->encrypt($data);
     }
 
-    public static function get(string $name)
+    public static function get(string $name): mixed
     {
         $dec = new Decryptor();
         $dec->setKeys(APP_KEY);

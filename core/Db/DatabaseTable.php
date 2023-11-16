@@ -4,6 +4,7 @@ namespace Core\Db;
 
 use Hindbiswas\QueBee\Query;
 use Hindbiswas\QueBee\Table\CreateTable;
+use mysqli_result;
 
 class DatabaseTable
 {
@@ -16,13 +17,13 @@ class DatabaseTable
         $this->pk = $table->get_pk();
     }
 
-    public function set_pagination(int $page = 1)
+    public function set_pagination(int $page = 1): void
     {
         $this->paginate = true;
         $this->page = $page;
     }
 
-    public function run($query)
+    public function run($query): mysqli_result|bool
     {
         return $this->conn->query($query);
     }
@@ -91,7 +92,7 @@ class DatabaseTable
 
     public function get_count_total(): int
     {
-        $query = Query::select(["count" => "COUNT($this->pk)"])
+        $query = Query::select(["count" => "COUNT(*)"])
             ->from($this->table->name)
             ->build();
         return intval($this->get_entry($query)['count']);
@@ -99,7 +100,7 @@ class DatabaseTable
 
     public function get_count(string $conditions): int
     {
-        $result = $this->get_entry_by_condition($conditions, ["count" => "COUNT($this->pk)"]);
+        $result = $this->get_entry_by_condition($conditions, ["count" => "COUNT(*)"]);
         return intval($result['count']);
     }
 
@@ -170,7 +171,7 @@ class DatabaseTable
 
     protected function get_condition_clause(string $conditions)
     {
-        return str_replace(["&&", "||", " !! ", " ?? "], ["AND", "OR", " NOT ", " LIKE "], $conditions);
+        return str_replace([" && ", " || ", " !! ", " ?? "], [" AND ", " OR ", " NOT ", " LIKE "], $conditions);
     }
 
     public function flush($proceed = false)

@@ -4,6 +4,7 @@ namespace Core\Auth;
 
 use Core\Base\CookieJar;
 use Core\Base\Request;
+use Core\Base\Session;
 use DateTime;
 use Hindbiswas\QueBee\Query;
 
@@ -27,18 +28,18 @@ class Logger
         if (!$this->is_logged_in()) return false; // Check if the user is logged in
         
         $pk = $this->auth_table->table->get_pk();
-        $hashed_key = hash($this->hash_algo, $pk . APP_KEY);
 
-        if ($key == $pk) return $_SESSION[$hashed_key];
+        if ($key == $pk) return Session::get($pk);
         if (!$this->auth_table->table->hasColumn($key)) return null;
-        return $this->auth_table->get_entry_by_key($_SESSION[$hashed_key], $pk, [$key])[$key];
+        return $this->auth_table->get_entry_by_key(Session::get("auth_" . $pk), $pk, [$key])[$key];
     }
 
     private function save_to_session(array $userData): bool
     {
         if (session_regenerate_id()) {
-            $hashed_key = hash($this->hash_algo, $this->auth_table->table->get_pk() . APP_KEY);
-            $_SESSION[$hashed_key] = $userData[$this->auth_table->table->get_pk()]; // Store the PK value in the session
+            $pk = $this->auth_table->table->get_pk();
+            $key = "auth_$pk";
+            Session::set($key, $userData[$pk]); // Store the PK value in the session
             return true; // Return true on successful session save
         }
         return false; // Return false if session regeneration fails
@@ -102,8 +103,8 @@ class Logger
 
     public function is_logged_in(): mixed
     {
-        $hashed_key = hash($this->hash_algo, $this->auth_table->table->get_pk() . APP_KEY);
-        if (!isset($_SESSION[$hashed_key])) {
+        $pk = "auth_" . $this->auth_table->table->get_pk();
+        if (!Session::get($pk)) {
             if (!$this->token_table) return false;
 
             $token = CookieJar::get('_remember_me');

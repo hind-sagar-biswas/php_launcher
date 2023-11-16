@@ -4,7 +4,6 @@ namespace Core\Security;
 
 use Core\Base\RequestType;
 use Core\Base\Url;
-use InvalidArgumentException;
 
 class Response
 {
