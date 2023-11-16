@@ -5,7 +5,7 @@ declare(strict_types=1);
 // Start a PHP session
 session_start();
 // Regenerate session ID (uncomment to enable)
-// session_regenerate_id(true);
+session_regenerate_id(true);
 
 // Define paths
 define('ROOTPATH', __DIR__ . '/../');
@@ -17,7 +17,6 @@ require_once ROOTPATH . 'vendor/autoload.php';
 // Use statements
 use Core\Base\Request;
 use Core\Router\Router;
-use Core\Security\Csrf;
 use Core\Base\RequestType;
 use Core\Router\RouteSystem;
 use Hindbiswas\Phpdotenv\DotEnv;

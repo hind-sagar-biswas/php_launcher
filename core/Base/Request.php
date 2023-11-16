@@ -49,7 +49,8 @@ class Request
         $this->origin = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
 
         // Sanitize and store POST data
-        $data = [];
+        $data = Session::unset('_redirect_data');
+        if (!$data) $data = [];
         foreach ($_POST as $key => $value) {
             $data[$key] = (!is_array($value)) ? htmlspecialchars($value, ENT_QUOTES) : $value;
         }

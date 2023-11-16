@@ -58,7 +58,7 @@ class WebRouter
         if (isset($GLOBALS['__exported'])) {
             $variableNames = explode('|', $GLOBALS['__exported']);
             foreach ($variableNames as $var) {
-                $$var = $GLOBALS[$var];
+                global $$var;
             }
         }
 

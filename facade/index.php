@@ -89,7 +89,6 @@ use Core\Router\RouteSystem; ?>
 </head>
 
 <body>
-
     <div class="doc">
         <?php include_once ROOTPATH . 'core/Cmd/stdio.php' ?>
         <h4 style="max-width: 800px; width: 100%; margin: auto;">

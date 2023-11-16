@@ -163,29 +163,6 @@ class Random
     public static function equipment(): string
     {
         $data = json_decode(file_get_contents(ROOTPATH . 'core/Data/equipments.json'), true);
-        $ict = $data['ict'];
-        $science = $data['science'];
-        $diagnosis = $data['diagnosis'];
-
-        $full = [...$ict, ...$science, ...$diagnosis];
-        return self::choice($full);
-    }
-
-    public static function ictEquipment(): string
-    {
-        $data = json_decode(file_get_contents(ROOTPATH . 'core/Data/equipments.json'), true);
-        return self::choice($data['ict']);
-    }
-
-    public static function scienceEquipment(): string
-    {
-        $data = json_decode(file_get_contents(ROOTPATH . 'core/Data/equipments.json'), true);
-        return self::choice($data['science']);
-    }
-
-    public static function diagnosisEquipment(): string
-    {
-        $data = json_decode(file_get_contents(ROOTPATH . 'core/Data/equipments.json'), true);
-        return self::choice($data['diagnosis']);
+        return self::choice($data);
     }
 }

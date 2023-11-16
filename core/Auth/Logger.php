@@ -4,6 +4,7 @@ namespace Core\Auth;
 
 use Core\Base\CookieJar;
 use Core\Base\Request;
+use Core\Base\Session;
 use DateTime;
 use Hindbiswas\QueBee\Query;
 
@@ -25,27 +26,20 @@ class Logger
     public function get_val($key): null|bool|string
     {
         if (!$this->is_logged_in()) return false; // Check if the user is logged in
+        
+        $pk = $this->auth_table->table->get_pk();
 
-        // Generate a hashed session key for the provided key
-        $hashed_key = hash($this->hash_algo, $key . APP_KEY);
-
-        if (!isset($_SESSION[$hashed_key])) return null; // Check if the session key exists
-
-        return $_SESSION[$hashed_key]; // Return the value associated with the session key
+        if ($key == $pk) return Session::get($pk);
+        if (!$this->auth_table->table->hasColumn($key)) return null;
+        return $this->auth_table->get_entry_by_key(Session::get("auth_" . $pk), $pk, [$key])[$key];
     }
 
     private function save_to_session(array $userData): bool
     {
         if (session_regenerate_id()) {
-            foreach ($userData as $key => $value) {
-                if ($key[0] === '_') continue;
-                else {
-                    // Generate a hashed session key for the current user data
-                    $hashed_key = hash($this->hash_algo, $key . APP_KEY);
-                    $_SESSION[$hashed_key] = $value; // Store the value in the session
-                }
-            }
-            $_SESSION[$this->KEY] = hash($this->hash_algo, $_SESSION[hash($this->hash_algo, $this->auth_table->identifier . APP_KEY)]); // Update integrity key
+            $pk = $this->auth_table->table->get_pk();
+            $key = "auth_$pk";
+            Session::set($key, $userData[$pk]); // Store the PK value in the session
             return true; // Return true on successful session save
         }
         return false; // Return false if session regeneration fails
@@ -109,8 +103,8 @@ class Logger
 
     public function is_logged_in(): mixed
     {
-        $hashed_identifier_key = hash($this->hash_algo, $this->auth_table->identifier . APP_KEY);
-        if (!isset($_SESSION[$this->KEY]) || !isset($_SESSION[$hashed_identifier_key])) {
+        $pk = "auth_" . $this->auth_table->table->get_pk();
+        if (!Session::get($pk)) {
             if (!$this->token_table) return false;
 
             $token = CookieJar::get('_remember_me');
@@ -121,11 +115,6 @@ class Logger
 
             $this->save_to_session($data);
             return $this->is_logged_in();
-        }
-        $tampered = !($_SESSION[$this->KEY] == hash($this->hash_algo, $_SESSION[$hashed_identifier_key]));
-        if ($tampered) {
-            $this->logout(); // Logout the user if session integrity is compromised
-            return false;
         }
         return true; // User is logged in and session is valid
     }
