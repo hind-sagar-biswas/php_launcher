@@ -41,7 +41,7 @@ define('CSRF_ENABLED', ($_ENV['CSRF_ENABLED'] === 'true') ? true : false);
 // App Info
 define('APP_KEY', $_ENV['APP_KEY']);
 define('APP_NAME', $_ENV['APP_NAME']);
-define('APP_DEBUG', $_ENV['APP_DEBUG']);
+define('APP_DEBUG', ($_ENV['APP_DEBUG'] === 'true') ? true : false);
 define('APP_ROOT', $_ENV['APP_ROUTE_ROOT']);
 define('APP_URL', $_ENV['APP_URL'] . APP_ROOT);
 define('APP_API_ROOT', $_ENV['API_ROUTE_ROOT']);

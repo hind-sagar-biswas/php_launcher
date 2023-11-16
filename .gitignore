@@ -7,5 +7,6 @@ vendor/
 %*/
 /temp/
 /logs/
+/server/
 db_dump_*.sql
 /_plt_*
