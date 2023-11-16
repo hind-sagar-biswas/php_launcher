@@ -14,12 +14,13 @@ class Response
         403 => '403.php',
         404 => '404.php',
         412 => '412.php',
+        500 => '500.php',
     ];
 
     public static function code(int $code, ?string $msg = null, mixed $response = null)
     {
         http_response_code($code);
-        header("Title: " .  APP_NAME);
+        header("Title: ERROR $code | " .  APP_NAME);
         try {
             if (defined('REQUEST') && REQUEST->type === RequestType::API) {
                 self::json($response, true, $msg);
@@ -67,6 +68,12 @@ class Response
         die();
     }
 
+    public static function terminateInternalServerError()
+    {
+        self::code(500);
+        die();
+    }
+
     public static function redirect($destination, string $message = '', ?array $query = null, ?array $data = null, bool $auto = true)
     {
         if ($auto) {
@@ -87,5 +94,4 @@ class Response
         header("Location: " . $url->build());
         exit();
     }
-
 }

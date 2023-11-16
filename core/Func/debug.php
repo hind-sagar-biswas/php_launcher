@@ -79,7 +79,7 @@ function getCallLocation()
 
 function d($data, string $header = 'DUMP'): void
 {
-    if (APP_DEBUG !== 'true') return;
+    if (!APP_DEBUG) return;
     if (REQUEST->type === RequestType::WEB) {
 
         [$line, $file] = getCallLocation();
