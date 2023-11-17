@@ -15,4 +15,9 @@ class BaseRoute
     public function __construct(public readonly string $method = 'GET', public readonly string $route)
     {
     }
+
+    public function route_pattern()
+    {
+        return '#^' . preg_replace_callback('/{([^\/]+)}/', fn ($matches) => '(?P<' . $matches[1] . '>[^/]+)', $this->route) . '$#';
+    }
 }

@@ -3,17 +3,18 @@
 namespace Core\Base;
 
 use Core\Security\Response;
+use Error;
 use Exception;
 
 class ExceptionHandler
 {
-    public static function handle(Exception $e)
+    public static function handle(Exception|Error $e)
     {
         if (APP_DEBUG) self::debug_mode($e);
         else self::non_debug_mode($e);
     }
 
-    private static function non_debug_mode(Exception $e): void
+    private static function non_debug_mode(Exception|Error $e): void
     {
         // these are our templates
         $traceline = "\t\t\t#%s %s(%s): %s(%s)";
@@ -62,7 +63,7 @@ class ExceptionHandler
         Response::terminateInternalServerError();
     }
 
-    private static function debug_mode(Exception $e): void
+    private static function debug_mode(Exception|Error $e): void
     {
         $core_dir = realpath(__DIR__ . '/../');
 
@@ -86,7 +87,7 @@ class ExceptionHandler
                     'line' => ['text' => $stackPoint['line'], 'style' => 'color:#95a5a6'],
                     'function' => [
                         'text' => $stackPoint['function'] . "<span style='color:#95a5a6'>(" . implode(', ', $stackPoint['args']) . ")</span>",
-                        'style' => ''
+                        'style' => 'color:#4faeee'
                     ],
                     'code' => ['text' => 'internal code', 'style' => 'color:#d19a66'],
                 ];
@@ -137,7 +138,7 @@ class ExceptionHandler
             return '<p>No data to display.</p>';
         }
 
-        $html = '<table border="1" cellpadding="10px" width="100%"><tr style="background-color: #262626;">';
+        $html = '<table border="1" cellpadding="10px" width="100%" style="color: #efefef;"><tr style="background-color: #262626;">';
 
         // Extract column headers
         $headers = array_keys(current($data));

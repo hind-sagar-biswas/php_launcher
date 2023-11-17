@@ -15,13 +15,14 @@ define('ERR_PAGES', ROOTPATH . 'shell/errors/');
 require_once ROOTPATH . 'vendor/autoload.php';
 
 // Use statements
-
 use Core\Base\ExceptionHandler;
 use Core\Base\Request;
 use Core\Router\Router;
 use Core\Base\RequestType;
 use Core\Router\RouteSystem;
 use Hindbiswas\Phpdotenv\DotEnv;
+
+set_exception_handler(ExceptionHandler::class . "::handle");
 
 // Load environment variables from .env file
 $dotEnv = new DotEnv(ROOTPATH . 'shell'); // Location where .env file exists
@@ -86,5 +87,4 @@ if (REQUEST) {
     define('ROUTER', $Router);
     unset($Router);
     unset($_SESSION['message']);
-    set_exception_handler(ExceptionHandler::class . "::handle");
 }
