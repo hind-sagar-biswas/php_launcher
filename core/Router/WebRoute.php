@@ -3,19 +3,8 @@
 namespace Core\Router;
 
 
-class WebRoute
+class WebRoute extends BaseRoute
 {
-    public string $file;
-    public string $name;
-
-    use GaurdTrait;
-    use DataTrait;
-    use QueryTrait;
-
-    public function __construct(public readonly string $method = 'GET', public readonly string $route)
-    {
-    }
-
     public function name(string $name): self
     {
         $this->name = $name;
