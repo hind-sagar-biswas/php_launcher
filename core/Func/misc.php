@@ -1,5 +1,25 @@
 <?php
 
+function listTables()
+{
+    $folderPath = ROOTPATH . 'shell/Database/Table/';
+    $files = scandir($folderPath);
+    $tableNames = [];
+    foreach ($files as $file) {
+        if (is_file($folderPath . '/' . $file) && preg_match('/^(.*)Table\.php$/', $file, $matches)) {
+            $tableNames[] = $matches[1];
+        }
+    }
+    return $tableNames;
+}
+
+function pascalToUnderscore($pascalCase)
+{
+    $words = array_filter(preg_split('/(?=[A-Z])/', $pascalCase), fn ($v): bool => !empty($v));
+    $underscored = strtolower(implode('_', $words));
+    return $underscored;
+}
+
 function underscoreToPascalCase($underscored)
 {
     $words = explode('_', $underscored);

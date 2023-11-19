@@ -9,4 +9,4 @@ vendor/
 /logs/
 /server/
 db_dump_*.sql
-/_plt_*
+/_pl_*

@@ -12,11 +12,11 @@ function migrate_dump()
     $dump .= "-- MySQL Database" . PHP_EOL;
     $dump .= PHP_EOL . "-- Table Dumps" . PHP_EOL;
 
-    include_once ROOTPATH . 'shell\Database\list.php';
+    $DATABASE_TABLE_LIST = listTables(ROOTPATH);
     $methodName = 'table_query';
 
     foreach ($DATABASE_TABLE_LIST as $tableName) {
-        $tableName = underscoreToPascalCase($tableName) . 'Table';
+        $tableName = $tableName . 'Table';
         $className = "\\Shell\\Database\\Table\\$tableName";
 
         if (class_exists($className)) {
@@ -37,8 +37,8 @@ function migrate_dump()
     $dump .= PHP_EOL . "-- Table Seed Dumps" . PHP_EOL;
     $methodName = 'seeds';
     foreach ($DATABASE_TABLE_LIST as $dbTableName) {
-        $tableName = underscoreToPascalCase($dbTableName) . 'Table';
-        $seedName = underscoreToPascalCase($dbTableName) . 'Seed';
+        $tableName = $dbTableName . 'Table';
+        $seedName = $dbTableName . 'Seed';
         $className = "\\Shell\\Database\\Table\\$tableName";
         $seedClassName = "\\Shell\\Database\\Seed\\$seedName";
 

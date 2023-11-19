@@ -38,7 +38,7 @@ class $tableName extends DatabaseTable
         \$className = preg_replace('/Table$/', '', (new \ReflectionClass(\$this))->getShortName());
         \$tableName = strtolower(preg_replace('/([a-z])([A-Z])/', '\$1_\$2', \$className));
         return Table::create(\$tableName)->columns([
-            'id' => Col::integer(11)->unsigned()->pk()->ai(),
+            'id' => Col::integer(11)->unsigned()->ai()->pk(),
         ]);
     }
 }

@@ -22,7 +22,6 @@ $commands = [
     ],
     'migrate' => [
         'flush',
-        'create',
         'seed',
         'dump',
     ]
@@ -70,5 +69,5 @@ if (array_key_exists($args[0], $commands)) {
         StdIO::put("🟠 No subcommand called `" . $args[1] . "` present for `" . $args[0] . "`");
     }
 } else {
-    StdIO::put("🟠 No command called `" . $args[0] . "` present for `launch.php`");
+    StdIO::put("🟠 No command called `" . $args[0] . "` present for `php launch`");
 }
