@@ -1,8 +1,8 @@
 <?php
 
-function listTables($root_path)
+function listTables()
 {
-    $folderPath = $root_path . 'shell/Database/Table/';
+    $folderPath = ROOTPATH . 'shell/Database/Table/';
     $files = scandir($folderPath);
     $tableNames = [];
     foreach ($files as $file) {
@@ -11,6 +11,13 @@ function listTables($root_path)
         }
     }
     return $tableNames;
+}
+
+function pascalToUnderscore($pascalCase)
+{
+    $words = array_filter(preg_split('/(?=[A-Z])/', $pascalCase), fn ($v): bool => !empty($v));
+    $underscored = strtolower(implode('_', $words));
+    return $underscored;
 }
 
 function underscoreToPascalCase($underscored)
