@@ -1,5 +1,18 @@
 <?php
 
+function listTables($root_path)
+{
+    $folderPath = $root_path . 'shell/Database/Table/';
+    $files = scandir($folderPath);
+    $tableNames = [];
+    foreach ($files as $file) {
+        if (is_file($folderPath . '/' . $file) && preg_match('/^(.*)Table\.php$/', $file, $matches)) {
+            $tableNames[] = $matches[1];
+        }
+    }
+    return $tableNames;
+}
+
 function underscoreToPascalCase($underscored)
 {
     $words = explode('_', $underscored);

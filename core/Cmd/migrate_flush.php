@@ -4,11 +4,11 @@ use Hindbiswas\Phpdotenv\StdIO;
 
 function migrate_flush()
 {
-    include_once ROOTPATH . 'shell\Database\list.php';
+    $DATABASE_TABLE_LIST = listTables(ROOTPATH);
     $methodName = 'table_query';
 
     foreach ($DATABASE_TABLE_LIST as $tableName) {
-        $tableName = underscoreToPascalCase($tableName) . 'Table';
+        $tableName = $tableName . 'Table';
         $className = "\\Shell\\Database\\Table\\$tableName";
 
         if (class_exists($className)) {

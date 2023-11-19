@@ -4,11 +4,12 @@ use Hindbiswas\Phpdotenv\StdIO;
 
 function create_seed($tableName)
 {
-    include_once ROOTPATH . 'shell\Database\list.php';
+    $DATABASE_TABLE_LIST = listTables(ROOTPATH);
     if (!in_array($tableName, $DATABASE_TABLE_LIST)) {
         StdIO::put("❌ '$tableName' not present in `\$DATABASE_TABLE_LIST`.");
         return;
     }
+    
     if (!file_exists(ROOTPATH . 'shell/Database/Table/' . underscoreToPascalCase($tableName) . 'Table.php')) {
         StdIO::put("🟡 Table cass for '$tableName'not found.");
         $create = StdIO::get(StdIO::red('!') . ' Create table?', 'y', ['y', 'n']);

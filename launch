@@ -22,7 +22,6 @@ $commands = [
     ],
     'migrate' => [
         'flush',
-        'create',
         'seed',
         'dump',
     ]

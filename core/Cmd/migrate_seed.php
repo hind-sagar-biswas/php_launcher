@@ -4,12 +4,12 @@ use Hindbiswas\Phpdotenv\StdIO;
 
 function migrate_seed()
 {
-    include_once ROOTPATH . 'shell\Database\list.php';
+    $DATABASE_TABLE_LIST = listTables(ROOTPATH);
     $methodName = 'seeds';
 
     foreach ($DATABASE_TABLE_LIST as $dbTableName) {
-        $tableName = underscoreToPascalCase($dbTableName) . 'Table';
-        $seedName = underscoreToPascalCase($dbTableName) . 'Seed';
+        $tableName = $dbTableName . 'Table';
+        $seedName = $dbTableName . 'Seed';
         $className = "\\Shell\\Database\\Table\\$tableName";
         $seedClassName = "\\Shell\\Database\\Seed\\$seedName";
 
