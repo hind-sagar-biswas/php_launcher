@@ -29,7 +29,7 @@ class Logger
         
         $pk = $this->auth_table->table->get_pk();
 
-        if ($key == $pk) return Session::get($pk);
+        if ($key == $pk) return Session::get("auth_$pk");
         if (!$this->auth_table->table->hasColumn($key)) return null;
         return $this->auth_table->get_entry_by_key(Session::get("auth_" . $pk), $pk, [$key])[$key];
     }
