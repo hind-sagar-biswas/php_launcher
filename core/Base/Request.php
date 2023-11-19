@@ -57,7 +57,7 @@ class Request
         $this->data = $data;
 
         // Determine the 'page' from query parameters or default to 1
-        $this->page = (isset($req_query['page']) && is_numeric($req_query['page'])) ? intval($req_query['page']) : 1;
+        $this->page = (isset($req_query['page']) && is_numeric($req_query['page'])) ? (int)$req_query['page'] : 1;
 
         // Remove 'page' from the query parameters
         unset($req_query['page']);
