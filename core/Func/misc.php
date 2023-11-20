@@ -5,14 +5,25 @@ function listTables()
     $folderPath = ROOTPATH . 'shell/Database/Table/';
     $files = scandir($folderPath);
     $tableNames = [];
+
+    // Filter out non-file entries and match table names
+    $files = array_filter($files, function ($file) {
+        return preg_match('/^(.*)Table\.php$/', $file);
+    });
+
+    // Sort files based on creation time
+    usort($files, function ($a, $b) use ($folderPath) {
+        $fileA = $folderPath . '/' . $a;
+        $fileB = $folderPath . '/' . $b;
+        return filectime($fileA) - filectime($fileB);
+    });
+
     foreach ($files as $file) {
-        if (is_file($folderPath . '/' . $file) && preg_match('/^(.*)Table\.php$/', $file, $matches)) {
-            $tableNames[] = $matches[1];
-        }
+        preg_match('/^(.*)Table\.php$/', $file, $matches);
+        $tableNames[] = $matches[1];
     }
     return $tableNames;
 }
-
 function pascalToUnderscore($pascalCase)
 {
     $words = array_filter(preg_split('/(?=[A-Z])/', $pascalCase), fn ($v): bool => !empty($v));
