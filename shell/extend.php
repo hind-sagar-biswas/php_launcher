@@ -4,12 +4,12 @@
 
 // use Core\Auth\Logger;
 // use Core\Base\Export;
-// use Shell\Database\Table\LoginTokensTable;
+// use Shell\Database\Table\UsersTokensTable;
 // use Shell\Database\Table\UsersTable;
 
 // $_auth = new Logger(
 //     auth_table: new UsersTable(),
-//     token_table: new LoginTokensTable(),
+//     token_table: new UsersTokensTable(),
 //     hash_pass: true,
 //     identifier_regex: null,
 //     passkey_regex: null,

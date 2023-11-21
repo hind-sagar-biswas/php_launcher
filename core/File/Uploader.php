@@ -6,6 +6,7 @@ use Core\Security\Random;
 
 class Uploader
 {
+    protected ?string $fileName = null;
     protected string $targetDirectory;
     protected array $allowedFileTypes = [];
     protected int $maxFileSize = 1048576;
@@ -13,7 +14,12 @@ class Uploader
 
     public function __construct(string $targetDirectory = '')
     {
-        $this->targetDirectory = $this->rootUpload . 'uploads/' . ltrim($targetDirectory, '/');
+        $this->targetDirectory = $this->rootUpload . ltrim($targetDirectory, '/');
+    }
+
+    public function save_as(?string $name)
+    {
+        $this->fileName = $name;
     }
     
     public function set_allowed_types(array $allowedFileTypes = [])
@@ -53,9 +59,11 @@ class Uploader
 
         // Move the uploaded file to the target directory
         $file_name = date("Y-m-d_H-i-s_") . Random::numString(5) . '_' . basename($file['name']);
+        if ($this->fileName) $file_name = $this->fileName;
+        
         $targetPath = "$this->targetDirectory/$file_name";
         if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-            return [true, $targetPath];
+            return [true, 'uploads/' . $file_name];
         } else {
             return "Error moving the uploaded file.";
         }

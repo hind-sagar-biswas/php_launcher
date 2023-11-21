@@ -9,7 +9,7 @@ use Hindbiswas\QueBee\Table;
 use Hindbiswas\QueBee\Table\CreateTable;
 use Hindbiswas\QueBee\Table\Values\FK;
 
-class LoginTokensTable extends TokenTable
+class UsersTokensTable extends TokenTable
 {
     public function __construct()
     {
@@ -23,7 +23,7 @@ class LoginTokensTable extends TokenTable
         $className = preg_replace('/Table$/', '', (new \ReflectionClass($this))->getShortName());
         $tableName = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $className));
         return Table::create($tableName)->columns([
-            'id' => Col::integer(11)->unsigned()->pk()->ai(),
+            'id' => Col::integer(11)->unsigned()->ai()->pk(),
             'selector' => Col::varchar(225),
             'hashed_validator' => Col::varchar(225),
             'user_id' => Col::integer(11)->unsigned(),

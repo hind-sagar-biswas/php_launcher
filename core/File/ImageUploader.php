@@ -4,7 +4,7 @@ namespace Core\File;
 
 class ImageUploader extends Uploader
 {
-    protected string $rootUpload = ROOTPATH . 'assets/images/';
+    protected string $rootUpload = ROOTPATH . 'assets/images/uploads/';
     private array $allowed_image_exts = [
         'jpg',
         'jpeg',
