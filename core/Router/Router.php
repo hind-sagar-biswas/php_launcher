@@ -2,6 +2,7 @@
 
 namespace Core\Router;
 
+use Core\Base\Url;
 use Core\Base\Request;
 use Core\Security\Csrf;
 use Core\Base\RequestType;
@@ -51,17 +52,25 @@ class Router
     }
 
     // Get the route URL by name
-    public function getRoute(string $name, bool $full = true): string
+    public function getRoute(string $name, ?array $query = null, bool $full = true): string
     {
-        if ($full) return APP_URL . $this->router->get_route($name);
-        return $this->router->get_route($name);
+        if (!$full) return $this->router->get_route($name);
+        $route = $this->router->get_route($name);
+        if ($route === '/') $route = '';
+        $url = new Url(APP_URL . $route);
+        if ($query) $url->addQuery($query);
+        return $url->build();
     }
 
     // Get the POST route URL by name
-    public function postRoute(string $name, bool $full = true): string
+    public function postRoute(string $name, ?array $query = null, bool $full = true): string
     {
-        if ($full) return APP_URL . $this->router->get_route($name, method: 'POST');
-        return $this->router->get_route($name, method: 'POST');
+        if (!$full) return $this->router->get_route($name, method: 'POST');
+        $route = $this->router->get_route($name, method: 'POST');
+        if ($route === '/') $route = '';
+        $url = new Url(APP_URL . $route);
+        if ($query) $url->addQuery($query);
+        return $url->build();
     }
 
     // Create a new GET route object
