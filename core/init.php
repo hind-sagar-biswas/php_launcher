@@ -15,11 +15,12 @@ define('ERR_PAGES', ROOTPATH . 'shell/errors/');
 require_once ROOTPATH . 'vendor/autoload.php';
 
 // Use statements
-use Core\Base\ExceptionHandler;
 use Core\Base\Request;
+use Core\Base\Session;
 use Core\Router\Router;
 use Core\Base\RequestType;
 use Core\Router\RouteSystem;
+use Core\Base\ExceptionHandler;
 use Hindbiswas\Phpdotenv\DotEnv;
 
 set_exception_handler(ExceptionHandler::class . "::handle");
@@ -48,7 +49,7 @@ define('APP_URL', $_ENV['APP_URL'] . APP_ROOT);
 define('APP_API_ROOT', $_ENV['API_ROUTE_ROOT']);
 define('APP_API', APP_URL . APP_API_ROOT);
 // App folders/Paths
-define('TEMPLATES', ROOTPATH . 'shell/templates/');
+define('TEMPLATES', ROOTPATH . 'facade/templates/');
 // Database configuration
 define('DB_HOST', $_ENV['DB_HOST']);
 define('DB_PORT', $_ENV['DB_PORT']);
@@ -85,6 +86,7 @@ require_once ROOTPATH . 'shell/extend.php';
 // Set ROUTER constant if REQUEST is available, and clean up variables
 if (REQUEST) {
     define('ROUTER', $Router);
+    define('DATA', Session::unset('_redirect_data'));
     unset($Router);
     unset($_SESSION['message']);
 }
