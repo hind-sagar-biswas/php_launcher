@@ -11,7 +11,6 @@ class UsersSeed implements TableSeeder
     {
         $seeds = [
             [
-                "uid" => Random::uid(),
                 "username" => 'admin',
                 "phone" => "12345",
                 "email" => "admin@root.com",
@@ -23,7 +22,6 @@ class UsersSeed implements TableSeeder
         for ($i = 0; $i < 20; $i++) {
             $name = Random::fullName();
             $seeds[] = [
-                "uid" => Random::uid(),
                 "username" => Random::username($name),
                 "email" => Random::email($name),
                 "phone" => Random::phoneNumber(),

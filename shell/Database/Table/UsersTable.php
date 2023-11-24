@@ -21,9 +21,9 @@ class UsersTable extends AuthTable
         $className = preg_replace('/Table$/', '', (new \ReflectionClass($this))->getShortName());
         $tableName = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $className));
         return Table::create($tableName)->columns([
-            'id' => Col::integer(11)->unsigned()->pk()->ai(),
+            'id' => Col::integer(11)->unsigned()->ai()->pk(),
             'uid' => Col::varchar(10)->unique(),
-            'username' => Col::varchar(225)->unique()->default(DefaultVal::NULL),
+            'username' => Col::varchar(225)->unique(),
             'phone' => Col::varchar(100)->unique(),
             'email' => Col::varchar(100)->unique(),
             'is_superadmin' => Col::integer(1)->default('0'),
