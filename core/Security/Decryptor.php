@@ -43,7 +43,7 @@ class Decryptor
         $encrypted_data = base64_decode($encrypted_data);
 
         if ($encrypted_data === false) throw new \Exception("Encrypted data is not base64 encoded");
-        
+
         if ($this->type === EncryptionType::DUAL_KEY) openssl_private_decrypt($encrypted_data, $decrypted_data, $this->key);
         else {
             $ivlen = openssl_cipher_iv_length($this->cipher);
@@ -53,6 +53,6 @@ class Decryptor
         }
 
         if ($decrypted_data === false) throw new \Exception("Decryption failed");
-        return ($decode_json) ? json_decode($decrypted_data) : $decrypted_data;
+        return ($decode_json) ? json_decode($decrypted_data, true) : $decrypted_data;
     }
 }

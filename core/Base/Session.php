@@ -32,20 +32,4 @@ class Session
         unset($_SESSION[self::key($name)]);
         return $value;
     }
-
-    public static function fixedSet(
-        string $name,
-        mixed $data,
-        string $route = REQUEST->route,
-        ?RequestType $request = null
-    ): void {
-        $name = self::key($route) . "::$name";
-        self::set($name, $data);
-    }
-
-    public static function fixedGet(string $name)
-    {
-        $name = self::key(REQUEST->route) . "::$name";
-        return self::get($name);
-    }
 }
