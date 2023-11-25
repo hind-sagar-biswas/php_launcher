@@ -5,8 +5,6 @@ namespace Core\Auth;
 use Core\Base\CookieJar;
 use Core\Base\Request;
 use Core\Base\Session;
-use DateTime;
-use Hindbiswas\QueBee\Query;
 
 class Logger
 {
@@ -45,7 +43,7 @@ class Logger
         return false; // Return false if session regeneration fails
     }
 
-    public function login(Request $Request)
+    public function login(Request $Request): array
     {
         if ($Request->method !== 'POST')
             return ['success' => false, 'response' => LoginResponse::INVALID_METHOD];
@@ -61,7 +59,7 @@ class Logger
 
         if ($this->identifier_regex && !preg_match($this->identifier_regex, $val))
             return ['success' => false, 'response' => LoginResponse::INVALID_IDENTIFIER];
-        if ($this->passkey_regex && !preg_match($this->passkey_regex, $val))
+        if ($this->passkey_regex && !preg_match($this->passkey_regex, $passkey))
             return ['success' => false, 'response' => LoginResponse::INVALID_PASSKEY];
 
         $val = $this->auth_table->conn->real_escape_string($val);
@@ -89,6 +87,47 @@ class Logger
             'response' => LoginResponse::SUCCESS,
             'data' => $user,
         ];
+    }
+
+    public function signup(Request $Request, bool $login = true): array
+    {
+        $data = $Request->data;
+        $identifier = $this->auth_table->identifier;
+        $key = $this->auth_table->key;
+
+        if ($Request->method !== 'POST')
+            return ['success' => false, 'response' => SignupResponse::INVALID_METHOD];
+        if (!array_key_exists($identifier, $data))
+            return ['success' => false, 'response' => SignupResponse::ABSENT_IDENTIFIER];
+        if (!array_key_exists($key, $data))
+            return ['success' => false, 'response' => SignupResponse::ABSENT_PASSKEY];
+        if (!array_key_exists("re_$key", $data))
+            return ['success' => false, 'response' => SignupResponse::ABSENT_RE_PASSKEY];
+        if ($data["re_$key"] !== $data[$key])
+            return ['success' => false, 'response' => SignupResponse::MISSMATCHED_PASSKEY];
+        if ($this->auth_table->entry_exists("$identifier = \"" . $data[$identifier] . '"')) 
+            return ['success' => false, 'response' => SignupResponse::PREEXISTING_IDENTIFIER];
+        if ($this->identifier_regex && !preg_match($this->identifier_regex, $identifier))
+            return ['success' => false, 'response' => SignupResponse::INVALID_IDENTIFIER];
+        if ($this->passkey_regex && !preg_match($this->passkey_regex, $key))
+            return ['success' => false, 'response' => SignupResponse::INVALID_PASSKEY];
+        
+        
+        if ($this->hash_pass) $data[$key] = hash($this->hash_algo, $data[$key]);
+
+        if ($user = $this->auth_table->insert($data)) {
+            if ($login) {
+                $login_response = $this->login($Request);
+                if ($login_response['success']) return $login_response;
+                return  ['success' => false, 'response' => SignupResponse::LOGIN_FAILED];
+            }
+            return [
+                'success' => true,
+                'response' => SignupResponse::SUCCESS,
+                'data' => $user,
+            ];
+        }
+        return ['success' => false, 'response' => SignupResponse::UNKNOWN];
     }
 
     public function logout()
