@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80351ef09b8f04adc7bce282d7fb0be5",
+    "content-hash": "9e7a62c5a995a9d6307123ec1bf75a63",
     "packages": [
         {
             "name": "hindbiswas/phpdotenv",
@@ -51,16 +51,16 @@
         },
         {
             "name": "hindbiswas/quebee",
-            "version": "v1.2.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hind-sagar-biswas/quebee.git",
-                "reference": "215a1b62402f4be98fee5ca1b9bb637db75d837e"
+                "reference": "dbb8c95ca8fdf7a866479fffc312924985338ffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hind-sagar-biswas/quebee/zipball/215a1b62402f4be98fee5ca1b9bb637db75d837e",
-                "reference": "215a1b62402f4be98fee5ca1b9bb637db75d837e",
+                "url": "https://api.github.com/repos/hind-sagar-biswas/quebee/zipball/dbb8c95ca8fdf7a866479fffc312924985338ffc",
+                "reference": "dbb8c95ca8fdf7a866479fffc312924985338ffc",
                 "shasum": ""
             },
             "require": {
@@ -88,9 +88,9 @@
             "description": "Qb - a lightweight Query Builder for SQL",
             "support": {
                 "issues": "https://github.com/hind-sagar-biswas/quebee/issues",
-                "source": "https://github.com/hind-sagar-biswas/quebee/tree/v1.2.0"
+                "source": "https://github.com/hind-sagar-biswas/quebee/tree/v2.0.0"
             },
-            "time": "2023-10-31T21:29:02+00:00"
+            "time": "2023-11-28T18:44:09+00:00"
         }
     ],
     "packages-dev": [],

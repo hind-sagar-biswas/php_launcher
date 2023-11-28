@@ -8,23 +8,19 @@ use Core\Base\Session;
 
 class Logger
 {
-    private string $KEY; // Session key for integrity check
-
     public function __construct(
-        private AuthTable $auth_table, // The authentication table
+        public readonly AuthTable $auth_table, // The authentication table
         private ?TokenTable $token_table = null, // The token table [to enable remember me feature]
         private bool $hash_pass = true, // Whether to hash passwords
         private string $hash_algo = 'sha256', // Password hashing algorithm
         private ?string $identifier_regex = null, // Regular expression for identifier validation
         private ?string $passkey_regex = null, // Regular expression for passkey validation
-    ) {
-        $this->KEY = hash($this->hash_algo, APP_KEY); // Initialize the session integrity key
-    }
+    ) {}
 
     public function get_val($key): null|bool|string
     {
         if (!$this->is_logged_in()) return false; // Check if the user is logged in
-        
+
         $pk = $this->auth_table->table->get_pk();
 
         if ($key == $pk) return Session::get("auth_$pk");
@@ -89,7 +85,7 @@ class Logger
         ];
     }
 
-    public function signup(Request $Request, bool $login = true): array
+    public function signup(Request $Request, array $custom_data = [], bool $repass = true, bool $login = true): array
     {
         $data = $Request->data;
         $identifier = $this->auth_table->identifier;
@@ -101,22 +97,30 @@ class Logger
             return ['success' => false, 'response' => SignupResponse::ABSENT_IDENTIFIER];
         if (!array_key_exists($key, $data))
             return ['success' => false, 'response' => SignupResponse::ABSENT_PASSKEY];
-        if (!array_key_exists("re_$key", $data))
+
+        $passkey = $data[$key];
+        $data[$identifier] = trim($data[$identifier]);
+        if ($this->hash_pass) $data[$key] = hash($this->hash_algo, $passkey);
+
+        if ($repass && !array_key_exists("re_$key", $data))
             return ['success' => false, 'response' => SignupResponse::ABSENT_RE_PASSKEY];
-        if ($data["re_$key"] !== $data[$key])
+        if ($repass && $data["re_$key"] !== $passkey)
             return ['success' => false, 'response' => SignupResponse::MISSMATCHED_PASSKEY];
-        if ($this->auth_table->entry_exists("$identifier = \"" . $data[$identifier] . '"')) 
+        if ($this->auth_table->entry_exists("$identifier = \"" . $data[$identifier] . '"'))
             return ['success' => false, 'response' => SignupResponse::PREEXISTING_IDENTIFIER];
         if ($this->identifier_regex && !preg_match($this->identifier_regex, $identifier))
             return ['success' => false, 'response' => SignupResponse::INVALID_IDENTIFIER];
         if ($this->passkey_regex && !preg_match($this->passkey_regex, $key))
             return ['success' => false, 'response' => SignupResponse::INVALID_PASSKEY];
-        
-        
-        if ($this->hash_pass) $data[$key] = hash($this->hash_algo, $data[$key]);
+
+
+        foreach ($custom_data as $k => $value) {
+            if ($k === $identifier || $k === $key) continue;
+            $data[$k] = $value;
+        }
 
         if ($user = $this->auth_table->insert($data)) {
-            if ($login) {
+            if ($login && !$this->is_logged_in()) {
                 $login_response = $this->login($Request);
                 if ($login_response['success']) return $login_response;
                 return  ['success' => false, 'response' => SignupResponse::LOGIN_FAILED];

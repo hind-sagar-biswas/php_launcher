@@ -1,6 +1,6 @@
 {
     "require": {
-        "hindbiswas/quebee": "^1.1",
+        "hindbiswas/quebee": "^2.0",
         "hindbiswas/phpdotenv": "^1.0"
     },
     "autoload": {
